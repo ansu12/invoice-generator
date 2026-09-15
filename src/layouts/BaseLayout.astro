@@ -64,6 +64,23 @@ const ogImageAbsolute = ogImage.startsWith("http")
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json" is:inline set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": Astro.url.pathname.split('/').filter(Boolean).map((part, index, arr) => ({
+        "@type": "ListItem",
+        "position": index + 2,
+        "name": part.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
+        "item": new URL('/' + arr.slice(0, index + 1).join('/'), Astro.site).href
+      })).reduce((acc, curr) => [...acc, curr], [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": Astro.site?.href
+      }])
+    })} />
+
     <!-- Structured data slot — pages inject their own schemas here -->
     <slot name="schema" />
   </head>
