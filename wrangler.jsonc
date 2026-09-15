@@ -1,0 +1,10 @@
+﻿{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "invoice-generator",
+  "compatibility_date": "2026-09-15",
+  "main": "@astrojs/cloudflare/entrypoints/server",
+  "assets": {
+    "directory": "./dist/client",
+    "binding": "ASSETS"
+  }
+}

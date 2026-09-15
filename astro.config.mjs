@@ -1,3 +1,4 @@
+import cloudflare from '@astrojs/cloudflare';
 // @ts-check
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
@@ -7,8 +8,8 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://invoice-generator.pages.dev',
-  output: 'static',
-  outDir: './build',
+  output: 'server',
+  adapter: cloudflare(),
   trailingSlash: 'never',
   compressHTML: true,
   integrations: [

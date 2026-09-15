@@ -1,4 +1,4 @@
----
+﻿---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
@@ -30,7 +30,7 @@ const schemas = [
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": `${BRAND} — {t("title")}`,
+    "name": `${BRAND} â€” {t("title")}`,
     "url": SITE,
     "applicationCategory": "BusinessApplication",
     "operatingSystem": "Web Browser",
@@ -98,10 +98,10 @@ const schemas = [
     <div class="max-w-5xl mx-auto px-6 mb-12">
       <p class="text-center text-sm font-semibold text-slate-500 uppercase tracking-wider mb-6">Trusted by freelancers, contractors, and small businesses worldwide</p>
       <div class="flex flex-wrap justify-center gap-4 text-sm font-medium text-slate-700">
-        <span class="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-full shadow-sm border border-slate-100">🔒 Your data never leaves your browser</span>
-        <span class="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-full shadow-sm border border-slate-100"><span class="text-emerald-500">✓</span> No signup, no email, no account</span>
-        <span class="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-full shadow-sm border border-slate-100"><span class="text-emerald-500">✓</span> No watermarks on PDFs</span>
-        <span class="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-full shadow-sm border border-slate-100"><span class="text-emerald-500">✓</span> Unlimited invoices, forever free</span>
+        <span class="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-full shadow-sm border border-slate-100">ðŸ”’ Your data never leaves your browser</span>
+        <span class="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-full shadow-sm border border-slate-100"><span class="text-emerald-500">âœ“</span> No signup, no email, no account</span>
+        <span class="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-full shadow-sm border border-slate-100"><span class="text-emerald-500">âœ“</span> No watermarks on PDFs</span>
+        <span class="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-full shadow-sm border border-slate-100"><span class="text-emerald-500">âœ“</span> Unlimited invoices, forever free</span>
       </div>
     </div>
     <InvoiceGenerator client:load lang={lang} />
@@ -158,19 +158,19 @@ const schemas = [
           <h2 class="text-3xl font-bold text-slate-900 mb-8">Built for Freelancers Worldwide</h2>
           <div class="grid md:grid-cols-2 gap-8 text-left max-w-3xl mx-auto">
             <div class="bg-white p-6 rounded-xl border border-slate-100 shadow-sm">
-              <h3 class="font-bold text-slate-900 mb-2">🌍 Multi-language</h3>
+              <h3 class="font-bold text-slate-900 mb-2">ðŸŒ Multi-language</h3>
               <p class="text-slate-600 text-sm">Supports 6 languages: English, Spanish, French, German, Portuguese, and Hindi.</p>
             </div>
             <div class="bg-white p-6 rounded-xl border border-slate-100 shadow-sm">
-              <h3 class="font-bold text-slate-900 mb-2">💱 Multi-currency</h3>
+              <h3 class="font-bold text-slate-900 mb-2">ðŸ’± Multi-currency</h3>
               <p class="text-slate-600 text-sm">Works with 10+ currencies including USD, EUR, GBP, INR, CAD, AUD and more.</p>
             </div>
             <div class="bg-white p-6 rounded-xl border border-slate-100 shadow-sm">
-              <h3 class="font-bold text-slate-900 mb-2">🏛 Regional Taxes</h3>
+              <h3 class="font-bold text-slate-900 mb-2">ðŸ› Regional Taxes</h3>
               <p class="text-slate-600 text-sm">Tax fields for US Sales Tax, EU VAT, UK VAT, India GST, Canada GST/HST, Australia GST, and UAE VAT.</p>
             </div>
             <div class="bg-white p-6 rounded-xl border border-slate-100 shadow-sm">
-              <h3 class="font-bold text-slate-900 mb-2">📅 Smart Dates</h3>
+              <h3 class="font-bold text-slate-900 mb-2">ðŸ“… Smart Dates</h3>
               <p class="text-slate-600 text-sm">Date formats intelligently adapt to your locale automatically (MM/DD/YYYY, DD/MM/YYYY, etc).</p>
             </div>
           </div>
@@ -184,13 +184,13 @@ const schemas = [
     </section>
 
     <article class="py-20 bg-white border-t border-slate-100">
-    <div class="max-w-3xl mx-auto px-6 prose prose-slate prose-lg">
-      <p>Welcome to the ultimate tool for small business billing. If you are a freelancer, a contractor, or a small agency owner, managing your accounts receivable is one of the most important aspects of your business. Without a reliable way to bill clients, your cash flow suffers. That is exactly why we built this powerful invoice generator—to completely eliminate the friction between finishing your hard work and actually getting paid for it. By providing a streamlined, intuitive billing experience, we help you project a professional image that encourages clients to pay you faster.</p>
+    <div class="max-w-3xl mx-auto px-6 prose prose-slate prose-lg text-justify">
+      <p>Welcome to the ultimate tool for small business billing. If you are a freelancer, a contractor, or a small agency owner, managing your accounts receivable is one of the most important aspects of your business. Without a reliable way to bill clients, your cash flow suffers. That is exactly why we built this powerful invoice generatorâ€”to completely eliminate the friction between finishing your hard work and actually getting paid for it. By providing a streamlined, intuitive billing experience, we help you project a professional image that encourages clients to pay you faster.</p>
       
       <p>Many professionals still rely on outdated methods to create invoice documents. They use clunky Microsoft Word templates, messy Excel spreadsheets, or they pay exorbitant monthly fees for bloated enterprise accounting software. This invoice generator offers a far superior alternative. It allows you to input your data into a clean, modern interface and instantly export a perfectly formatted PDF invoice. It bridges the gap between manual document creation and expensive SaaS subscriptions, delivering exactly what you need without any of the overhead.</p>
 
       <h2>What Is an Invoice Generator?</h2>
-      <p>An invoice generator is a specialized software tool—usually web-based—designed specifically to automate the creation and formatting of billing documents. Instead of forcing you to manually align text boxes, calculate tax percentages, and format tables in a word processor, an invoice generator provides a structured, fill-in-the-blank interface. You simply enter your business details, your client's information, and the services rendered, and the generator handles the complex layout and mathematical calculations behind the scenes.</p>
+      <p>An invoice generator is a specialized software toolâ€”usually web-basedâ€”designed specifically to automate the creation and formatting of billing documents. Instead of forcing you to manually align text boxes, calculate tax percentages, and format tables in a word processor, an invoice generator provides a structured, fill-in-the-blank interface. You simply enter your business details, your client's information, and the services rendered, and the generator handles the complex layout and mathematical calculations behind the scenes.</p>
       <p>Our specific invoice generator operates entirely in your web browser. This means it functions as a highly accessible invoice template that requires zero software downloads or installations. The primary goal of an invoice generator is to save you time. By automating the design and calculation phases of billing, you can generate a legally binding, mathematically accurate PDF invoice in a matter of seconds. It transforms a tedious administrative chore into a quick, effortless task, allowing you to focus your energy on growing your actual business.</p>
 
       <h2>How to Use This Invoice Generator</h2>
@@ -255,3 +255,4 @@ const schemas = [
 
   <Footer />
 </BaseLayout>
+
