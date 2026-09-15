@@ -8,6 +8,7 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://invoice-generator.pages.dev',
   output: 'static',
+  outDir: './build',
   trailingSlash: 'never',
   compressHTML: true,
   integrations: [
