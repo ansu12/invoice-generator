@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 @import "./print.css";
 
 
@@ -28,6 +29,10 @@
   --shadow-primary: 0 4px 16px rgba(37,99,235,0.25);
 }
 
+:root {
+  color-scheme: light;
+}
+
 /* ─── Base ───────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; }
 
@@ -35,6 +40,51 @@ html {
   font-family: var(--font-sans);
   font-size: 16px;
   color: var(--color-foreground);
-  background: #ffffff;
+  background: #ffffff !important;
+  color-scheme: light !important;
   -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  color-scheme: light !important;
+}
+
+/* ─── Typography & Paragraph Spacing ─────────────────── */
+p {
+  margin-bottom: 1.25rem;
+  line-height: 1.7;
+}
+
+/* Clean spacing for articles and text content */
+.prose p {
+  margin-bottom: 1.35rem;
+  line-height: 1.75;
+}
+
+.prose h2 {
+  margin-top: 2.25rem;
+  margin-bottom: 1rem;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.prose h3 {
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.prose ul, .prose ol {
+  margin-top: 0.5rem;
+  margin-bottom: 1.25rem;
+  padding-left: 1.5rem;
+}
+
+.prose li {
+  margin-bottom: 0.5rem;
 }
