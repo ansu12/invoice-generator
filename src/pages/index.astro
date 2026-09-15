@@ -46,43 +46,47 @@ const schemas = [
   <Navbar />
 
   <!-- HERO SECTION -->
-  <section class="relative pt-24 pb-16 overflow-hidden bg-slate-50">
-    <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
-      <h1 class="text-5xl md:text-6xl font-extrabold text-slate-900 tracking-tight mb-6">
-        Invoice Generator
+  <section class="relative pt-20 pb-12 overflow-hidden bg-white">
+    <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+      <h1 class="text-5xl md:text-6xl font-extrabold text-slate-900 tracking-tight mb-4">
+        Free Invoice Generator
       </h1>
-      <h2 class="text-xl md:text-2xl font-medium text-slate-500 leading-relaxed mb-8 max-w-xl mx-auto">
-        Create a Professional Invoice in Seconds
-      </h2>
-      <p class="text-base text-slate-400 mb-8 max-w-lg mx-auto">
-        Welcome to the best free online invoice generator. No signup, no watermarks, and no limits. Fill in your details, add line items, and download a clean PDF invoice instantly.
+      
+      <p class="text-xl text-slate-600 mb-8 max-w-2xl mx-auto">
+        Create professional invoices in seconds. No signup, no watermarks, no limits.
       </p>
-      <div class="flex flex-col sm:flex-row gap-3 justify-center">
-        <a href="#invoice-tool" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-4 rounded-[10px] text-base transition-colors shadow-[0_4px_16px_rgba(37,99,235,0.30)]">Create Free Invoice &darr;</a>
-        <a href="/invoice-template" class="bg-white hover:bg-slate-50 text-slate-800 font-semibold px-8 py-4 rounded-[10px] text-base border border-slate-200 hover:border-slate-300 transition-colors">Browse Templates</a>
+      
+      <div class="flex flex-wrap justify-center gap-3 mb-10">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-sm font-medium border border-emerald-100">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+          No Signup Required
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-sm font-medium border border-emerald-100">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+          Unlimited Invoices
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-sm font-medium border border-emerald-100">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+          Instant PDF Download
+        </span>
       </div>
-
-      <div class="mt-12 flex flex-wrap justify-center gap-6 text-sm font-medium text-slate-600">
-        <div class="flex items-center gap-2">
-          <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-          No signup required
-        </div>
-        <div class="flex items-center gap-2">
-          <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-          No watermarks
-        </div>
-        <div class="flex items-center gap-2">
-          <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-          Your data never leaves your browser
-        </div>
-        <div class="flex items-center gap-2">
-          <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-          Unlimited invoices
-        </div>
+      
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a href="#invoice-tool" class="w-full sm:w-auto bg-[#6366f1] hover:bg-[#4f46e5] text-white font-semibold px-8 py-4 rounded-xl text-lg transition-all shadow-[0_4px_14px_rgba(99,102,241,0.39)]">
+          Create Your Invoice Now
+        </a>
+        <button type="button" id="btn-sample-invoice" class="w-full sm:w-auto text-slate-500 hover:text-slate-900 font-medium px-6 py-4 transition-colors underline underline-offset-4 decoration-slate-300 hover:decoration-slate-400">
+          See a sample invoice
+        </button>
       </div>
-
     </div>
   </section>
+
+  <script is:inline>
+    document.getElementById('btn-sample-invoice')?.addEventListener('click', () => {
+      window.dispatchEvent(new Event('fill-sample-invoice'));
+    });
+  </script>
 
   <!-- INVOICE TOOL -->
   <InvoiceGenerator client:load />

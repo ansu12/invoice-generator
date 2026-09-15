@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import type { InvoiceData, LineItem } from "../lib/types";
 import { CURRENCIES } from "../lib/types";
 
@@ -67,6 +67,38 @@ interface ComponentProps {
 }
 
 export default function InvoiceGenerator({ initialData }: ComponentProps = {}) {
+  
+  useEffect(() => {
+    const handleSample = () => {
+      setData({
+        fromName: "Acme Web Design",
+        fromEmail: "hello@acmeweb.com",
+        fromAddress: "123 Tech Lane\nSan Francisco, CA 94105",
+        fromPhone: "(555) 123-4567",
+        fromEIN: "XX-XXXXXXX",
+        logoUrl: "https://www.w3.org/Icons/w3c_home",
+        toName: "Globex Corporation",
+        toEmail: "billing@globex.com",
+        toAddress: "456 Corporate Blvd\nNew York, NY 10001",
+        invoiceNumber: "INV-2026",
+        date: today(),
+        dueDate: dueIn30(),
+        currency: "USD",
+        taxRate: 8.5,
+        notes: "Thank you for your business! Please make payment within 30 days.",
+        items: [
+          { id: crypto.randomUUID(), description: "Website Redesign", quantity: 1, rate: 3500 },
+          { id: crypto.randomUUID(), description: "Monthly SEO Retainer", quantity: 1, rate: 850 },
+          { id: crypto.randomUUID(), description: "Hosting (Annual)", quantity: 12, rate: 25 }
+        ]
+      });
+      // Scroll to tool
+      document.getElementById('invoice-tool')?.scrollIntoView({ behavior: 'smooth' });
+    };
+    window.addEventListener('fill-sample-invoice', handleSample);
+    return () => window.removeEventListener('fill-sample-invoice', handleSample);
+  }, []);
+
   const [data, setData] = useState<InvoiceData>(() => {
     const def = getDefaultData();
     return initialData
