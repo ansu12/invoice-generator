@@ -15,6 +15,13 @@ export default defineConfig({
     react(),
     sitemap(),
   ],
+  i18n: {
+    defaultLocale: "en",
+    locales: ["en", "es", "hi"],
+    routing: {
+      prefixDefaultLocale: false
+    }
+  },
   vite: {
     plugins: [tailwindcss()],
   },

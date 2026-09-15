@@ -1,6 +1,7 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 import type { InvoiceData, LineItem } from "../lib/types";
 import { CURRENCIES } from "../lib/types";
+import { ui, defaultLang } from "../i18n/translations";
 
 // ── Helpers ────────────────────────────────────────────────────────────
 const newItem = (): LineItem => ({
@@ -64,9 +65,11 @@ function Toast({ toast, onDismiss }: { toast: ToastState; onDismiss: () => void 
 // ── Main Component ─────────────────────────────────────────────────────
 interface ComponentProps {
   initialData?: Partial<InvoiceData>;
+  lang?: string;
 }
 
-export default function InvoiceGenerator({ initialData }: ComponentProps = {}) {
+export default function InvoiceGenerator({ initialData, lang = defaultLang }: ComponentProps = {}) {
+  const t = (key: keyof typeof ui["en"]) => (ui as any)[lang]?.[key] || (ui as any)[defaultLang][key];
   
   useEffect(() => {
     const handleSample = () => {
@@ -177,7 +180,7 @@ export default function InvoiceGenerator({ initialData }: ComponentProps = {}) {
   // ── PDF generation helper ──────────────────────────────────────────
   const getPDFBlob = async (): Promise<{ blob: Blob; filename: string }> => {
     const { generateInvoicePDF } = await import("../lib/pdf-generator");
-    return generateInvoicePDF(data);
+    return generateInvoicePDF(data, lang);
   };
 
   // ── Download PDF ───────────────────────────────────────────────────
@@ -327,7 +330,7 @@ export default function InvoiceGenerator({ initialData }: ComponentProps = {}) {
 
             {/* Bill To */}
             <div className={cardCls}>
-              <h3 className="font-semibold text-slate-900 mb-4">Bill To</h3>
+              <h3 className="font-semibold text-slate-900 mb-4">{t("tool.billTo")}</h3>
               <div className="space-y-3">
                 <div>
                   <label className={labelCls}>Client Name / Company</label>
@@ -349,15 +352,15 @@ export default function InvoiceGenerator({ initialData }: ComponentProps = {}) {
 
             {/* Invoice Details */}
             <div className={cardCls}>
-              <h3 className="font-semibold text-slate-900 mb-4">Invoice Details</h3>
+              <h3 className="font-semibold text-slate-900 mb-4">{t("tool.invoiceDetails")}</h3>
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className={labelCls}>Invoice #</label>
+                  <label className={labelCls}>{t("tool.invoiceNum")}</label>
                   <input className={inputCls} value={data.invoiceNumber}
                     onChange={(e) => set("invoiceNumber", e.target.value)} />
                 </div>
                 <div>
-                  <label className={labelCls}>Currency</label>
+                  <label className={labelCls}>{t("tool.currency")}</label>
                   <select className={inputCls} value={data.currency} onChange={(e) => set("currency", e.target.value)}>
                     {CURRENCIES.map((c) => (
                       <option key={c.code} value={c.code}>{c.code} ({c.symbol})</option>
@@ -365,12 +368,12 @@ export default function InvoiceGenerator({ initialData }: ComponentProps = {}) {
                   </select>
                 </div>
                 <div>
-                  <label className={labelCls}>Invoice Date</label>
+                  <label className={labelCls}>{t("tool.date")}</label>
                   <input className={inputCls} type="date" value={data.invoiceDate}
                     onChange={(e) => set("invoiceDate", e.target.value)} />
                 </div>
                 <div>
-                  <label className={labelCls}>Due Date</label>
+                  <label className={labelCls}>{t("tool.dueDate")}</label>
                   <input className={inputCls} type="date" value={data.dueDate}
                     onChange={(e) => set("dueDate", e.target.value)} />
                 </div>
@@ -379,12 +382,12 @@ export default function InvoiceGenerator({ initialData }: ComponentProps = {}) {
 
             {/* Line Items */}
             <div className={cardCls}>
-              <h3 className="font-semibold text-slate-900 mb-4">Line Items</h3>
+              <h3 className="font-semibold text-slate-900 mb-4">{t("tool.lineItems")}</h3>
               <div className="space-y-3">
                 <div className="grid grid-cols-[1fr_72px_96px_36px] gap-2 text-xs font-semibold text-slate-500 uppercase tracking-wider px-1">
-                  <span>Description</span>
-                  <span className="text-center">Qty</span>
-                  <span className="text-right">Rate</span>
+                  <span>{t("tool.desc")}</span>
+                  <span className="text-center">{t("tool.qty")}</span>
+                  <span className="text-right">{t("tool.rate")}</span>
                   <span />
                 </div>
                 {data.items.map((item) => (
@@ -415,7 +418,7 @@ export default function InvoiceGenerator({ initialData }: ComponentProps = {}) {
 
               {/* Tax */}
               <div className="mt-4 flex items-center gap-3">
-                <label className="text-sm font-semibold text-slate-700 whitespace-nowrap">Sales Tax %</label>
+                <label className="text-sm font-semibold text-slate-700 whitespace-nowrap">{t("tool.taxRate")}</label>
                 <input className={`${inputCls} w-28`} type="number" min="0" max="100" step="0.5"
                   value={data.taxRate || ""} placeholder="0"
                   onChange={(e) => set("taxRate", parseFloat(e.target.value) || 0)} />
@@ -424,15 +427,15 @@ export default function InvoiceGenerator({ initialData }: ComponentProps = {}) {
 
             {/* Notes & Terms */}
             <div className={cardCls}>
-              <h3 className="font-semibold text-slate-900 mb-4">Notes & Terms</h3>
+              <h3 className="font-semibold text-slate-900 mb-4">{t("tool.notesTerms")}</h3>
               <div className="space-y-3">
                 <div>
-                  <label className={labelCls}>Payment Terms</label>
+                  <label className={labelCls}>{t("tool.paymentTerms")}</label>
                   <input className={inputCls} placeholder="Net 30" value={data.paymentTerms}
                     onChange={(e) => set("paymentTerms", e.target.value)} />
                 </div>
                 <div>
-                  <label className={labelCls}>Notes</label>
+                  <label className={labelCls}>{t("tool.notes")}</label>
                   <textarea className={`${inputCls} resize-none`} rows={3}
                     placeholder="Thank you for your business!"
                     value={data.notes} onChange={(e) => set("notes", e.target.value)} />
@@ -504,13 +507,13 @@ export default function InvoiceGenerator({ initialData }: ComponentProps = {}) {
                     )}
                   </div>
                   <div className="text-right">
-                    <h1 className="text-2xl font-bold text-slate-900 mb-3">INVOICE</h1>
+                    <h1 className="text-2xl font-bold text-slate-900 mb-3">{t("pdf.invoice")}</h1>
                     <div className="space-y-1 text-sm">
-                      <p><span className="text-slate-400 text-xs uppercase tracking-wider">Invoice #</span><br />
+                      <p><span className="text-slate-400 text-xs uppercase tracking-wider">{t("tool.invoiceNum")}</span><br />
                         <span className="font-semibold text-slate-900">{data.invoiceNumber}</span></p>
                       <p className="mt-2"><span className="text-slate-400 text-xs uppercase tracking-wider">Date</span><br />
                         <span className="text-slate-700">{data.invoiceDate || "—"}</span></p>
-                      <p className="mt-2"><span className="text-slate-400 text-xs uppercase tracking-wider">Due Date</span><br />
+                      <p className="mt-2"><span className="text-slate-400 text-xs uppercase tracking-wider">{t("tool.dueDate")}</span><br />
                         <span className="font-semibold text-slate-900">{data.dueDate || "—"}</span></p>
                       {data.paymentTerms && (
                         <p className="mt-2"><span className="text-slate-400 text-xs uppercase tracking-wider">Terms</span><br />
@@ -522,7 +525,7 @@ export default function InvoiceGenerator({ initialData }: ComponentProps = {}) {
 
                 {/* Bill To */}
                 <div className="mb-8 pb-6 border-b border-slate-100">
-                  <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Bill To</p>
+                  <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">{t("tool.billTo")}</p>
                   <p className="font-semibold text-slate-900">{data.toName || "Client Name"}</p>
                   {data.toEmail && <p className="text-slate-500 text-sm">{data.toEmail}</p>}
                   {data.toAddress && (
@@ -535,10 +538,10 @@ export default function InvoiceGenerator({ initialData }: ComponentProps = {}) {
                   <table className="w-full text-sm">
                     <thead>
                       <tr style={{ backgroundColor: "#1a1a2e" }}>
-                        <th className="text-left px-4 py-3 font-semibold text-white w-1/2">Description</th>
-                        <th className="text-center px-4 py-3 font-semibold text-white">Qty</th>
-                        <th className="text-right px-4 py-3 font-semibold text-white">Rate</th>
-                        <th className="text-right px-4 py-3 font-semibold text-white">Amount</th>
+                        <th className="text-left px-4 py-3 font-semibold text-white w-1/2">{t("tool.desc")}</th>
+                        <th className="text-center px-4 py-3 font-semibold text-white">{t("tool.qty")}</th>
+                        <th className="text-right px-4 py-3 font-semibold text-white">{t("tool.rate")}</th>
+                        <th className="text-right px-4 py-3 font-semibold text-white">{t("tool.amount")}</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -558,17 +561,17 @@ export default function InvoiceGenerator({ initialData }: ComponentProps = {}) {
                 <div className="flex justify-end mb-8">
                   <div className="w-64 space-y-2 text-sm">
                     <div className="flex justify-between text-slate-600">
-                      <span>Subtotal</span>
+                      <span>{t("tool.subtotal")}</span>
                       <span>{fmt(subtotal)}</span>
                     </div>
                     {data.taxRate > 0 && (
                       <div className="flex justify-between text-slate-600">
-                        <span>Sales Tax ({data.taxRate}%)</span>
+                        <span>{t("tool.tax")} ({data.taxRate}%)</span>
                         <span>{fmt(taxAmt)}</span>
                       </div>
                     )}
                     <div className="flex justify-between font-bold text-base border-t border-slate-200 pt-2 mt-2">
-                      <span className="text-slate-900">Total</span>
+                      <span className="text-slate-900">{t("tool.total")}</span>
                       <span className="text-emerald-600">{fmt(total)}</span>
                     </div>
                   </div>
@@ -577,7 +580,7 @@ export default function InvoiceGenerator({ initialData }: ComponentProps = {}) {
                 {/* Notes */}
                 {data.notes && (
                   <div className="border-t border-slate-100 pt-5">
-                    <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Notes</p>
+                    <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">{t("tool.notes")}</p>
                     <p className="text-slate-500 text-sm whitespace-pre-line">{data.notes}</p>
                   </div>
                 )}

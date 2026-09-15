@@ -1,5 +1,6 @@
 ﻿import type { InvoiceData } from './types';
 import { CURRENCIES } from './types';
+import { ui, defaultLang } from '../i18n/translations';
 
 // ── Page constants (US Letter, inches) ─────────────────────────────────
 const MARGIN = 0.75;
@@ -29,8 +30,12 @@ function detectImgFormat(dataUrl: string): string {
 
 // ── Main export ─────────────────────────────────────────────────────────
 export async function generateInvoicePDF(
-  data: InvoiceData
+  data: InvoiceData,
+  lang: string = defaultLang
 ): Promise<{ blob: Blob; filename: string }> {
+  const t = (key: keyof typeof ui["en"]) => (ui as any)[lang]?.[key] || (ui as any)[defaultLang][key];
+
+
   const { default: jsPDF } = await import('jspdf');
   const { default: autoTable } = await import('jspdf-autotable');
   const doc = new jsPDF({ unit: 'in', format: 'letter' });
@@ -93,15 +98,15 @@ export async function generateInvoicePDF(
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(24);
   doc.setTextColor(15, 23, 42);
-  doc.text('INVOICE', RIGHT_X, rightY, { align: 'right' });
+  doc.text(t("pdf.invoice"), RIGHT_X, rightY, { align: 'right' });
   rightY += 0.4;
 
   // Invoice metadata (right-aligned)
   const metaRows: [string, string][] = [
-    ['Invoice #', data.invoiceNumber || '\u2014'],
-    ['Date', data.invoiceDate || '\u2014'],
-    ['Due Date', data.dueDate || '\u2014'],
-    ...(data.paymentTerms ? [['Terms', data.paymentTerms] as [string, string]] : []),
+    [t("pdf.invoiceNum"), data.invoiceNumber || '\u2014'],
+    [t("pdf.date"), data.invoiceDate || '\u2014'],
+    [t("pdf.dueDate"), data.dueDate || '\u2014'],
+    ...(data.paymentTerms ? [[t("pdf.terms"), data.paymentTerms] as [string, string]] : []),
   ];
 
   const metaLabelX = RIGHT_X - 1.3;
@@ -218,16 +223,16 @@ export async function generateInvoicePDF(
     y += bold ? 0.26 : 0.22;
   };
 
-  renderTotalRow('Subtotal', fmt(subtotal));
+  renderTotalRow(t("pdf.subtotal"), fmt(subtotal));
   if (data.taxRate > 0) {
-    renderTotalRow(`Sales Tax (${data.taxRate}%)`, fmt(taxAmt));
+    renderTotalRow(`${t("pdf.tax")} (${data.taxRate}%)`, fmt(taxAmt));
   }
 
   // Divider before total
   doc.setDrawColor(226, 232, 240);
   doc.line(tLabelX, y - 0.06, RIGHT_X, y - 0.06);
 
-  renderTotalRow('Total', fmt(total), true, [16, 185, 129]);
+  renderTotalRow(t("pdf.total"), fmt(total), true, [16, 185, 129]);
 
   // ── NOTES ──────────────────────────────────────────────────────────────
   if (data.paymentTerms || data.notes) {

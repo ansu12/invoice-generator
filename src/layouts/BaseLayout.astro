@@ -27,6 +27,12 @@ const canonicalURL = canonical
   ? new URL(canonical, siteBase).href
   : new URL(Astro.url.pathname, siteBase).href;
 
+const pathWithoutLang = Astro.url.pathname.replace(/^\/(es|hi)\//, '/').replace(/^\/(es|hi)$/, '/');
+const urlEn = new URL(pathWithoutLang, siteBase).href;
+const urlEs = new URL('/es' + pathWithoutLang.replace(/\/$/, '') + '/', siteBase).href;
+const urlHi = new URL('/hi' + pathWithoutLang.replace(/\/$/, '') + '/', siteBase).href;
+
+
 const ogImageAbsolute = ogImage.startsWith("http")
   ? ogImage
   : new URL(ogImage, siteBase).href;
@@ -44,6 +50,12 @@ const ogImageAbsolute = ogImage.startsWith("http")
     <meta name="description" content={description} />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
     <link rel="canonical" href={canonicalURL} />
+    
+    <!-- Hreflang Tags -->
+    <link rel="alternate" hreflang="en" href={urlEn} />
+    <link rel="alternate" hreflang="es" href={urlEs.replace(/\/\/$/, '/')} />
+    <link rel="alternate" hreflang="hi" href={urlHi.replace(/\/\/$/, '/')} />
+    <link rel="alternate" hreflang="x-default" href={urlEn} />
 
     <!-- Open Graph -->
     <meta property="og:type" content={ogType} />
