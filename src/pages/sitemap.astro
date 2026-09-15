@@ -1,0 +1,81 @@
+﻿---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import fs from 'fs';
+import path from 'path';
+
+const title = "HTML Sitemap | Free Invoice Generator";
+const description = "Complete sitemap and directory of all pages, tools, and blog posts available on the Free Invoice Generator website.";
+---
+
+<BaseLayout title={title} description={description} canonical="/sitemap">
+  <Navbar />
+  
+  <main class="max-w-4xl mx-auto px-6 py-16">
+    <h1 class="text-3xl font-bold text-slate-900 mb-8">Site Directory</h1>
+    <p class="text-slate-600 mb-12">A complete index of all pages available on our free invoice generator.</p>
+
+    <div class="grid md:grid-cols-2 gap-12">
+      <!-- Main Tools -->
+      <section>
+        <h2 class="text-xl font-bold text-slate-900 mb-4 pb-2 border-b border-slate-200">Invoice Tools</h2>
+        <ul class="space-y-3">
+          <li><a href="/" class="text-blue-600 hover:underline">Invoice Generator (Home)</a></li>
+          <li><a href="/free-invoice-generator" class="text-blue-600 hover:underline">Free Invoice Generator</a></li>
+          <li><a href="/online-invoice-generator" class="text-blue-600 hover:underline">Online Invoice Generator</a></li>
+          <li><a href="/free-online-invoice-generator" class="text-blue-600 hover:underline">Free Online Invoice Generator</a></li>
+          <li><a href="/invoice-generator-free" class="text-blue-600 hover:underline">Invoice Generator Free</a></li>
+          <li><a href="/invoice-template" class="text-blue-600 hover:underline">Invoice Template</a></li>
+        </ul>
+      </section>
+
+      <!-- Legal & Company -->
+      <section>
+        <h2 class="text-xl font-bold text-slate-900 mb-4 pb-2 border-b border-slate-200">Company & Legal</h2>
+        <ul class="space-y-3">
+          <li><a href="/about" class="text-blue-600 hover:underline">About Us</a></li>
+          <li><a href="/privacy" class="text-blue-600 hover:underline">Privacy Policy</a></li>
+          <li><a href="/terms" class="text-blue-600 hover:underline">Terms of Service</a></li>
+        </ul>
+      </section>
+
+      <!-- Blog Posts -->
+      <section class="md:col-span-2">
+        <h2 class="text-xl font-bold text-slate-900 mb-4 pb-2 border-b border-slate-200">Guides & Articles</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+          <ul class="space-y-3">
+            <li><a href="/blog/how-to-create-an-invoice" class="text-blue-600 hover:underline">How to Create an Invoice</a></li>
+            <li><a href="/blog/what-is-an-invoice" class="text-blue-600 hover:underline">What is an Invoice?</a></li>
+            <li><a href="/blog/free-invoice-template" class="text-blue-600 hover:underline">Free Invoice Template</a></li>
+            <li><a href="/blog/invoice-template-pdf" class="text-blue-600 hover:underline">Invoice Template PDF</a></li>
+            <li><a href="/blog/how-to-send-an-invoice" class="text-blue-600 hover:underline">How to Send an Invoice</a></li>
+            <li><a href="/blog/invoice-payment-terms" class="text-blue-600 hover:underline">Invoice Payment Terms Explained</a></li>
+          </ul>
+          <ul class="space-y-3">
+            <li><a href="/blog/invoice-numbering" class="text-blue-600 hover:underline">Best Practices for Invoice Numbering</a></li>
+            <li><a href="/blog/freelance-invoice-template" class="text-blue-600 hover:underline">Freelance Invoice Templates</a></li>
+            <li><a href="/blog/small-business-invoice" class="text-blue-600 hover:underline">Small Business Invoicing Guide</a></li>
+            <li><a href="/blog/invoice-vs-receipt" class="text-blue-600 hover:underline">Invoice vs Receipt: What's the Difference?</a></li>
+            <li><a href="/blog/invoice-generator-vs-invoicesimple" class="text-blue-600 hover:underline">Invoice Generator vs InvoiceSimple</a></li>
+            <li><a href="/blog/invoice-generator-vs-invoice-generator-com" class="text-blue-600 hover:underline">InvoiceGen vs Invoice-Generator.com</a></li>
+          </ul>
+        </div>
+      </section>
+      
+      <!-- Languages -->
+      <section class="md:col-span-2 mt-4">
+        <h2 class="text-xl font-bold text-slate-900 mb-4 pb-2 border-b border-slate-200">Languages</h2>
+        <div class="flex flex-wrap gap-4">
+          <a href="/es" class="px-4 py-2 bg-slate-50 text-slate-700 rounded-full border border-slate-200 hover:bg-slate-100">Español (ES)</a>
+          <a href="/hi" class="px-4 py-2 bg-slate-50 text-slate-700 rounded-full border border-slate-200 hover:bg-slate-100">हिन्दी (HI)</a>
+          <a href="/fr" class="px-4 py-2 bg-slate-50 text-slate-700 rounded-full border border-slate-200 hover:bg-slate-100">Français (FR)</a>
+          <a href="/de" class="px-4 py-2 bg-slate-50 text-slate-700 rounded-full border border-slate-200 hover:bg-slate-100">Deutsch (DE)</a>
+          <a href="/pt" class="px-4 py-2 bg-slate-50 text-slate-700 rounded-full border border-slate-200 hover:bg-slate-100">Português (PT)</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
