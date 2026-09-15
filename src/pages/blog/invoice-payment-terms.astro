@@ -8,7 +8,15 @@ import Footer from "../../components/Footer.astro";
   <div class="pt-24 pb-12 bg-slate-50 text-center border-b border-slate-100">
     <div class="max-w-4xl mx-auto px-6">
       <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">Invoice Payment Terms</h1>
-      <p class="text-slate-500 font-medium">By Jane Doe | Published Sept 15, 2026</p>
+      
+      <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-slate-500 font-medium mt-6">
+        <span>By <a href="/about" class="text-blue-600 hover:underline">Jane Doe</a></span>
+        <span class="hidden sm:inline">•</span>
+        <span>Published: <time datetime="2026-09-15">Sept 15, 2026</time></span>
+        <span class="hidden sm:inline">•</span>
+        <span>Updated: <time datetime="2026-09-15">Sept 15, 2026</time></span>
+      </div>
+
     </div>
   </div>
   <article class="py-16 bg-white">
@@ -64,6 +72,17 @@ import Footer from "../../components/Footer.astro";
 
       <script type="application/ld+json" set:html={JSON.stringify({"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why is invoice payment terms important?","acceptedAnswer":{"@type":"Answer","text":"It is vitally important because it ensures your business remains legally compliant and financially organized. Establishing a clear process guarantees that you are paid accurately and on time."}},{"@type":"Question","name":"How long does it take to set up?","acceptedAnswer":{"@type":"Answer","text":"With the right tools, it takes less than 60 seconds. By utilizing a modern, browser-based billing solution, you can skip the tedious manual formatting and immediately start generating professional documents."}},{"@type":"Question","name":"Do I need expensive software?","acceptedAnswer":{"@type":"Answer","text":"No, you absolutely do not need expensive software. There are powerful free tools available online that handle all the necessary calculations and formatting without requiring a monthly subscription or paid license."}},{"@type":"Question","name":"What is the best way to get started?","acceptedAnswer":{"@type":"Answer","text":"The best way to get started is to use a free online tool to generate your first document. You can input your details, review a live preview, and download a PDF instantly to see how simple the process is."}}]})} />
       
+      
+      <div class="mt-16 pt-8 border-t border-slate-100 flex items-start gap-6 bg-slate-50 p-8 rounded-2xl">
+        <div class="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-xl shrink-0">
+          JD
+        </div>
+        <div>
+          <h4 class="text-lg font-bold text-slate-900 mb-2">About Jane Doe</h4>
+          <p class="text-slate-600 leading-relaxed text-sm">Jane Doe is a certified financial consultant and small business advocate with over a decade of experience helping freelancers streamline their accounting. She regularly writes about invoicing best practices, cash flow management, and tax compliance.</p>
+        </div>
+      </div>
+
       <div class="mt-12 p-8 bg-blue-50 rounded-xl text-center border border-blue-100">
         <h3 class="text-2xl font-bold text-slate-900 mb-4">Ready to get paid faster?</h3>
         <p class="text-slate-600 mb-6">Create your free invoice now — no signup required.</p>

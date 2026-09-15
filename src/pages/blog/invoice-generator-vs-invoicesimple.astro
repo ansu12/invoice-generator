@@ -8,7 +8,16 @@ import Footer from "../../components/Footer.astro";
   <div class="pt-24 pb-12 bg-slate-50 text-center border-b border-slate-100">
     <div class="max-w-4xl mx-auto px-6">
       <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">Invoice Generator vs InvoiceSimple</h1>
-      <p class="text-lg text-slate-500">An in-depth, unbiased comparison for freelancers and small businesses.</p>
+      <p class="text-lg text-slate-500 mb-4">An in-depth, unbiased comparison for freelancers and small businesses.</p>
+
+      <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-slate-500 font-medium mt-6">
+        <span>By <a href="/about" class="text-blue-600 hover:underline">Jane Doe</a></span>
+        <span class="hidden sm:inline">•</span>
+        <span>Published: <time datetime="2026-09-15">Sept 15, 2026</time></span>
+        <span class="hidden sm:inline">•</span>
+        <span>Updated: <time datetime="2026-09-15">Sept 15, 2026</time></span>
+      </div>
+
     </div>
   </div>
   <article class="py-16 bg-white">
@@ -88,6 +97,17 @@ import Footer from "../../components/Footer.astro";
   
   <h2>The Verdict for Freelancers</h2>
   <p>We strongly recommend our <strong>Free Invoice Generator</strong> for anyone who values speed, privacy, and unlimited usage. Stop worrying about hitting arbitrary monthly limits, and start generating pristine PDF invoices that help you get paid faster, completely free of charge.</p>
+
+
+      <div class="mt-16 pt-8 border-t border-slate-100 flex items-start gap-6 bg-slate-50 p-8 rounded-2xl">
+        <div class="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-xl shrink-0">
+          JD
+        </div>
+        <div>
+          <h4 class="text-lg font-bold text-slate-900 mb-2">About Jane Doe</h4>
+          <p class="text-slate-600 leading-relaxed text-sm">Jane Doe is a certified financial consultant and small business advocate with over a decade of experience helping freelancers streamline their accounting. She regularly writes about invoicing best practices, cash flow management, and tax compliance.</p>
+        </div>
+      </div>
 
     </div>
   </article>
