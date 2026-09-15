@@ -306,37 +306,49 @@ const faqs = [
 
   <!-- ── HOW IT WORKS ──────────────────────────────────────────────── -->
   <section class="py-20 bg-slate-50" aria-labelledby="how-heading">
-    <div class="max-w-4xl mx-auto px-6 text-center">
+    <div class="max-w-4xl mx-auto px-6 text-center prose prose-slate">
       <h2 id="how-heading" class="text-4xl font-bold text-slate-900 tracking-tight mb-4">
-        Create an Invoice in 3 Steps
+        How to Create an Invoice Online
       </h2>
       <p class="text-slate-500 text-lg mb-14">No learning curve. Just fill, preview, and download.</p>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {[
-          { step: "1", title: "Fill in your details", desc: "Enter your business info, client details, line items, and tax rate. Upload your logo for a branded invoice." },
-          { step: "2", title: "Preview live", desc: "Watch your professional invoice take shape in real-time as you type — what you see is exactly what you get." },
-          { step: "3", title: "Download or share", desc: "Click Download for a clean PDF, share via WhatsApp, or print directly. No account required." },
-        ].map((s) => (
-          <div>
-            <div class="w-14 h-14 bg-blue-600 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-5 shadow-[0_4px_16px_rgba(37,99,235,0.30)]">
-              {s.step}
-            </div>
-            <h3 class="font-semibold text-slate-900 text-lg mb-2">{s.title}</h3>
-            <p class="text-slate-500 text-sm leading-relaxed">{s.desc}</p>
-          </div>
-        ))}
+      
+      <div class="text-left max-w-2xl mx-auto space-y-8">
+        <div>
+          <h3 class="font-semibold text-slate-900 text-xl mb-2">Step 1: Enter Your Business Details</h3>
+          <p class="text-slate-600">Start by adding your business name, email address, physical address, and optional EIN. You can also upload a logo to brand your invoice.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-900 text-xl mb-2">Step 2: Add Client Information</h3>
+          <p class="text-slate-600">Input the client's name, their contact email, and billing address. This ensures the invoice is legally binding and clearly addressed.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-900 text-xl mb-2">Step 3: Add Line Items</h3>
+          <p class="text-slate-600">Describe the services provided or products sold. Enter the quantity and rate for each item, and the total will calculate automatically.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-900 text-xl mb-2">Step 4: Set Tax and Due Date</h3>
+          <p class="text-slate-600">Specify your payment terms (like Net 30), select the invoice due date, and apply any required sales tax percentage.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-900 text-xl mb-2">Step 5: Download PDF or Share</h3>
+          <p class="text-slate-600">Once you're happy with the live preview, click "Download PDF" to save a clean, professional copy, or share it instantly via WhatsApp.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ── FAQ ──────────────────────────────────────────────────────── -->
+  <!-- ── FAQ ───────────────────────────────────────────────────────── -->
   <section class="py-20 bg-white" aria-labelledby="faq-heading">
     <div class="max-w-3xl mx-auto px-6">
       <h2 id="faq-heading" class="text-4xl font-bold text-slate-900 tracking-tight text-center mb-14">
         Frequently Asked Questions
       </h2>
       <div class="space-y-4" itemscope itemtype="https://schema.org/FAQPage">
-        {faqs.map((item) => (
+        {[
+          ...faqs,
+          { q: "Is my invoice data stored on your servers?", a: "No. Everything runs entirely in your browser. We do not store, track, or save any of your invoice data or client information." },
+          { q: "Can I use multiple currencies?", a: "Yes. You can select from all major global currencies in the settings panel before generating your PDF." }
+        ].map((item) => (
           <details
             class="group bg-slate-50 rounded-[12px] border border-slate-100"
             itemscope
