@@ -1,0 +1,110 @@
+﻿---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import Schema from "../../components/Schema.astro";
+import ComparisonTable from "../../components/ComparisonTable.astro";
+
+const schemas = [
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is InvoiceSimple really free?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Their free tier is heavily restricted to just 3 invoices lifetime." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the free invoice limit on InvoiceSimple?",
+        "acceptedAnswer": { "@type": "Answer", "text": "You can only create 3 invoices for free." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does InvoiceSimple put watermarks on free invoices?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, they add visible watermarks to free invoices." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a better free alternative to InvoiceSimple?",
+        "acceptedAnswer": { "@type": "Answer", "text": "InvoiceGen is a completely free alternative with no limits or watermarks." }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Review",
+    "itemReviewed": {
+      "@type": "SoftwareApplication",
+      "name": "InvoiceSimple",
+      "applicationCategory": "BusinessApplication"
+    },
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": "3",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "name": "InvoiceSimple Review — Is It Actually Free?",
+    "reviewBody": "InvoiceSimple offers a polished invoicing experience but its free tier is heavily restricted to just 3 invoices lifetime, includes watermarks on PDFs, and requires account creation. For users needing truly unlimited free invoicing, alternatives like InvoiceGen offer a better experience.",
+    "author": {
+      "@type": "Organization",
+      "name": "InvoiceGen"
+    }
+  }
+];
+---
+<BaseLayout
+  title="Invoice Generator vs InvoiceSimple: Which Free Invoice Tool Is Actually Free? | InvoiceGen"
+  description="Detailed comparison of free invoice generators. We tested both tools — here's what we found about signup requirements, watermarks, limits, and hidden fees."
+  canonical="https://yourdomain.com/blog/invoice-generator-vs-invoicesimple"
+>
+  <Schema data={schemas} slot="schema" />
+  <Navbar />
+
+  <article class="max-w-3xl mx-auto px-6 py-16 prose prose-slate">
+    <header class="mb-10 not-prose">
+      <div class="text-sm text-blue-600 font-medium mb-3">Comparison &bull; 10 min read</div>
+      <h1 class="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight mb-4">Invoice Generator vs InvoiceSimple</h1>
+      <p class="text-xl text-slate-500">Both claim to be free. Only one actually is. Here's our full comparison.</p>
+    </header>
+
+    <p>When searching for a free invoice generator, you'll likely come across InvoiceSimple. It's heavily marketed, has good brand recognition, and promises free invoicing. But is it actually free? We spent time testing both tools — InvoiceGen and InvoiceSimple — to give you an honest breakdown. The short answer: they're not the same. The differences matter if you're a freelancer or small business trying to avoid subscription fees.</p>
+
+    <h2>Signup Requirements</h2>
+    <p>InvoiceGen requires zero signup — open the page and start creating immediately. InvoiceSimple requires account creation with email verification before you can create your first invoice. For freelancers who want to create a quick invoice without commitment, this friction matters. It also raises data privacy questions — does InvoiceSimple retain your business and client data?</p>
+    <p>With our <a href="/free-invoice-generator">free invoice generator</a>, you can create your first invoice in under 60 seconds with no account.</p>
+
+    <h2>Free Tier Invoice Limits</h2>
+    <p>InvoiceSimple's free tier limits you to 3 invoices total (not per month — ever). After 3, you must upgrade to their paid plan ($9.99-$19.99/month). InvoiceGen has no limits — create 1 invoice or 1,000 invoices, it's always free. For a freelancer billing multiple clients monthly, InvoiceSimple becomes a monthly expense very quickly.</p>
+
+    <h2>Watermarks on Free PDFs</h2>
+    <p>InvoiceSimple adds visible "Created with InvoiceSimple" branding to free PDFs. This looks unprofessional and signals to clients that you're using a budget tool. InvoiceGen PDFs have zero watermarks — they're completely clean and professional. Your clients see your business name and logo, nothing else.</p>
+
+    <h2>US Sales Tax Support</h2>
+    <p>Both tools handle basic sales tax. InvoiceGen includes a dedicated sales tax percentage field plus an EIN (Employer Identification Number) field — critical for US businesses working with enterprise clients who need it for 1099 reporting. InvoiceSimple's free tier has partial tax support with no EIN field.</p>
+    <p>Try our <a href="/online-invoice-generator">online invoice generator</a> with full US tax field support.</p>
+
+    <h2>Sharing Options</h2>
+    <p>InvoiceGen offers PDF download, WhatsApp sharing via Web Share API (or direct wa.me link fallback), and browser print. InvoiceSimple allows email sending from their platform on paid plans only — free tier just gives you a PDF download. For freelancers working internationally or with clients who primarily use WhatsApp (common in Australia, UK, South Asia), InvoiceGen's WhatsApp sharing is a genuine advantage.</p>
+
+    <h2>Speed & Performance</h2>
+    <p>InvoiceGen loads instantly as a static site with no backend calls during invoice creation. InvoiceSimple has a more complex UI with account management, templates library, and recurring invoices that introduces loading latency. For creating a quick one-off invoice, InvoiceGen is measurably faster.</p>
+
+    <h2>Comparison Table</h2>
+    <div class="not-prose">
+      <ComparisonTable />
+    </div>
+
+    <h2>The Verdict</h2>
+    <p>If you need a 100% free invoice tool with no signup, no limits, no watermarks — InvoiceGen is the clear choice. InvoiceSimple is a better fit if you need features like recurring invoices, expense tracking, or client portal — but you'll need to pay for those. For freelancers, contractors, and small businesses who just need clean professional PDF invoices, InvoiceGen delivers everything without the friction or cost.</p>
+
+    <div class="my-8 bg-blue-50 border border-blue-100 rounded-[16px] p-6 text-center not-prose">
+      <p class="font-semibold text-slate-900 mb-3">Generate your invoice now — free, no signup</p>
+      <a href="/invoice-generator-free" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-[10px] transition-colors">Create Free Invoice</a>
+    </div>
+  </article>
+
+  <Footer />
+</BaseLayout>

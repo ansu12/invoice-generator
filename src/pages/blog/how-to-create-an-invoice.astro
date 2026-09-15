@@ -1,0 +1,128 @@
+﻿---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import Schema from "../../components/Schema.astro";
+
+const schemas = [
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Create an Invoice",
+    "step": [
+      { "@type": "HowToStep", "position": 1, "name": "Enter your business name, logo, and contact details" },
+      { "@type": "HowToStep", "position": 2, "name": "Add your client's name and billing address" },
+      { "@type": "HowToStep", "position": 3, "name": "Set the invoice number, date, and due date" },
+      { "@type": "HowToStep", "position": 4, "name": "Add line items with description, quantity, and rate" },
+      { "@type": "HowToStep", "position": 5, "name": "Click Download PDF or Share via WhatsApp" }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What should I include on an invoice?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Contact details, client info, dates, invoice number, items, and totals." }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need to charge sales tax on invoices in the US?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It depends on your state and whether you are selling goods or services." }
+      },
+      {
+        "@type": "Question",
+        "name": "What does Net 30 mean on an invoice?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Payment is due within 30 days of the invoice date." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I send an invoice professionally?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Send it as a PDF or via WhatsApp, always with clear payment instructions." }
+      }
+    ]
+  }
+];
+---
+<BaseLayout
+  title="How to Create a Professional Invoice (Free Template + Generator) | InvoiceGen"
+  description="Complete guide to creating professional invoices. Learn what to include, US tax requirements, payment terms, common mistakes, and best practices."
+  canonical="https://yourdomain.com/blog/how-to-create-an-invoice"
+>
+  <Schema data={schemas} slot="schema" />
+  <Navbar />
+
+  <article class="max-w-3xl mx-auto px-6 py-16 prose prose-slate">
+    <header class="mb-10 not-prose">
+      <div class="text-sm text-blue-600 font-medium mb-3">Guide &bull; 8 min read</div>
+      <h1 class="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight mb-4">How to Create an Invoice</h1>
+      <p class="text-xl text-slate-500">Everything you need to know — from what to include to getting paid faster.</p>
+    </header>
+
+    <p>Creating a professional invoice doesn't require accounting software or expensive subscriptions. With the right format and a few best practices, you can create invoices that get paid faster, look credible, and comply with US tax requirements. This guide covers everything — from what to include on your invoice to common mistakes that delay payment.</p>
+
+    <div class="my-8 bg-blue-50 border border-blue-100 rounded-[16px] p-6 text-center not-prose">
+      <p class="font-semibold text-slate-900 mb-3">Generate your invoice now — free, no signup</p>
+      <a href="/#invoice-tool" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-[10px] transition-colors">Create Free Invoice</a>
+    </div>
+
+    <h2>What to Include on a Professional Invoice</h2>
+    <ul>
+      <li>Your business name, logo, and contact information (address, email, phone)</li>
+      <li>Client name, company, and billing address</li>
+      <li>Unique invoice number (sequential, e.g. INV-2024-001)</li>
+      <li>Invoice date and payment due date</li>
+      <li>Itemized list of products/services with description, quantity, rate, and amount</li>
+      <li>Subtotal before tax</li>
+      <li>Sales tax amount and rate (if applicable)</li>
+      <li>Total amount due</li>
+      <li>Payment terms (e.g. "Net 30", "Due on receipt")</li>
+      <li>Accepted payment methods</li>
+      <li>Notes or additional terms</li>
+    </ul>
+
+    <h2>US Tax Requirements for Invoices</h2>
+    <p>US businesses don't charge VAT but may charge sales tax depending on state and type of product/service. Service businesses are often exempt in many states. Include your EIN on invoices to look professional, especially regarding the 1099 threshold ($600). Keep in mind there are state-by-state variations.</p>
+    <p>Our tool includes an EIN field and a sales tax percentage feature. Our <a href="/online-invoice-generator">online invoice generator</a> includes US sales tax fields and EIN support built in.</p>
+
+    <h2>How to Set Payment Terms That Get You Paid</h2>
+    <p>Common terms include Net 7, Net 15, Net 30, and Due on receipt. Shorter terms often work better for freelancers. Consider late payment fees (e.g., 1.5% monthly) and deposit requirements for larger projects. Ensure clear due dates instead of relying on "Net 30" ambiguity, and state payment methods explicitly.</p>
+
+    <div class="my-8 bg-blue-50 border border-blue-100 rounded-[16px] p-6 text-center not-prose">
+      <p class="font-semibold text-slate-900 mb-3">Generate your invoice now — free, no signup</p>
+      <a href="/#invoice-tool" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-[10px] transition-colors">Create Free Invoice</a>
+    </div>
+
+    <h2>Common Invoice Mistakes That Delay Payment</h2>
+    <ol>
+      <li>Missing or wrong contact details — client can't reach you for questions</li>
+      <li>No invoice number — hard to track and reference</li>
+      <li>Vague line item descriptions — "consulting" vs "Brand strategy session, 4 hours"</li>
+      <li>Missing due date — "payment within 30 days" of what date?</li>
+      <li>No payment method instructions — client doesn't know how to pay</li>
+      <li>Sending PDF via email without follow-up — lost in inbox</li>
+      <li>Not including your EIN when working with US businesses</li>
+    </ol>
+
+    <h2>Invoice Best Practices</h2>
+    <p>Send invoices immediately after completing work, use a consistent numbering system, and follow up 3 days before the due date. You can use WhatsApp for faster delivery to mobile-first clients. Always keep a copy of every invoice sent, and use a professional PDF format instead of photos or screenshots.</p>
+    <p>Need an <a href="/invoice-template">invoice template</a>? We have free templates for freelancers, contractors, and small businesses.</p>
+
+    <h2>How to Create an Invoice in Under 2 Minutes (Step by Step)</h2>
+    <ol>
+      <li>Enter your business name, logo, and contact details</li>
+      <li>Add your client's name and billing address</li>
+      <li>Set the invoice number, date, and due date</li>
+      <li>Add line items with description, quantity, and rate (totals auto-calculate)</li>
+      <li>Click Download PDF or Share via WhatsApp</li>
+    </ol>
+
+    <div class="my-8 bg-blue-50 border border-blue-100 rounded-[16px] p-6 text-center not-prose">
+      <p class="font-semibold text-slate-900 mb-3">Generate your invoice now — free, no signup</p>
+      <a href="/free-invoice-generator" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-[10px] transition-colors">Free Invoice Generator</a>
+    </div>
+  </article>
+
+  <Footer />
+</BaseLayout>

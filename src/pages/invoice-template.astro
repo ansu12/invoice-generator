@@ -1,0 +1,210 @@
+﻿---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import Schema from "../components/Schema.astro";
+import InvoiceGenerator from "../components/InvoiceGenerator";
+
+const freelancerData = {
+  fromName: "Jane Smith Creative",
+  fromEmail: "jane@janesmith.com",
+  fromPhone: "+1 (555) 234-5678",
+  invoiceNumber: "INV-001",
+  paymentTerms: "Net 15",
+  notes: "Thank you for your business! Payment via bank transfer or PayPal.",
+  items: [
+    {id: "1", description: "Website Design & Development", quantity: 1, rate: 2500},
+    {id: "2", description: "Logo Design", quantity: 1, rate: 750},
+    {id: "3", description: "Revision rounds (3)", quantity: 3, rate: 150}
+  ]
+};
+
+const contractorData = {
+  fromName: "Peak Construction LLC",
+  fromEmail: "billing@peakconstruction.com",
+  fromPhone: "+1 (555) 987-6543",
+  invoiceNumber: "INV-2024-042",
+  paymentTerms: "Due on receipt",
+  taxRate: 8.5,
+  notes: "Payment due within 30 days. Late payments subject to 1.5% monthly interest.",
+  items: [
+    {id: "1", description: "Labor — Framing (40 hrs @ $85/hr)", quantity: 40, rate: 85},
+    {id: "2", description: "Materials — Lumber & Hardware", quantity: 1, rate: 1200},
+    {id: "3", description: "Equipment rental", quantity: 1, rate: 350}
+  ]
+};
+
+const smallbizData = {
+  fromName: "Bloom Floral Studio",
+  fromEmail: "hello@bloomfloralstudio.com",
+  fromPhone: "+1 (555) 321-0987",
+  invoiceNumber: "INV-FB-2024-001",
+  paymentTerms: "50% deposit, balance due on delivery",
+  taxRate: 6,
+  notes: "Thank you for choosing Bloom Floral! We appreciate your business.",
+  items: [
+    {id: "1", description: "Wedding Centerpieces (10 tables)", quantity: 10, rate: 150},
+    {id: "2", description: "Bridal Bouquet — Premium", quantity: 1, rate: 350},
+    {id: "3", description: "Boutonniere (5 count)", quantity: 5, rate: 35},
+    {id: "4", description: "Delivery & Setup", quantity: 1, rate: 200}
+  ]
+};
+
+const schemas = [
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is an invoice template?",
+        "acceptedAnswer": { "@type": "Answer", "text": "An invoice template is a pre-formatted layout for billing." }
+      },
+      {
+        "@type": "Question",
+        "name": "What should be included in an invoice template?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Business info, client info, dates, items, and totals." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I download the invoice template as a PDF?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, you can generate and download a PDF instantly." }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need Microsoft Word or Excel for these invoice templates?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No, they work directly in your browser." }
+      },
+      {
+        "@type": "Question",
+        "name": "Are these invoice templates free to use?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, completely free." }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Use an Invoice Template",
+    "step": [
+      { "@type": "HowToStep", "position": 1, "name": "Choose a template" },
+      { "@type": "HowToStep", "position": 2, "name": "Fill business details" },
+      { "@type": "HowToStep", "position": 3, "name": "Add client info" },
+      { "@type": "HowToStep", "position": 4, "name": "Add line items" },
+      { "@type": "HowToStep", "position": 5, "name": "Download PDF" }
+    ]
+  }
+];
+---
+<BaseLayout
+  title="Free Invoice Template — Download or Generate Online Instantly | InvoiceGen"
+  description="Free invoice templates for freelancers, contractors, and small businesses. Use our online generator to fill and download as PDF instantly — no signup."
+  canonical="https://yourdomain.com/invoice-template"
+>
+  <Schema data={schemas} slot="schema" />
+  <Navbar />
+
+  <section class="pt-20 pb-12 text-center bg-white">
+    <div class="max-w-3xl mx-auto px-6">
+      <h1 class="text-5xl md:text-6xl font-bold text-slate-900 tracking-tight leading-tight mb-4">Free Invoice Template</h1>
+      <p class="text-xl text-slate-500 mb-8 max-w-lg mx-auto">Download or Generate Online Instantly</p>
+      <div class="flex gap-4 justify-center">
+        <a href="#templates-section" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-4 rounded-[10px] text-base transition-colors shadow-lg">Use Template</a>
+        <a href="#invoice-tool" class="bg-slate-100 hover:bg-slate-200 text-slate-900 font-semibold px-8 py-4 rounded-[10px] text-base transition-colors">Download PDF</a>
+      </div>
+    </div>
+  </section>
+
+  <article class="py-16 bg-slate-50">
+    <div class="max-w-4xl mx-auto px-6 prose prose-slate">
+      <p class="text-slate-600 mb-10 text-lg">Invoice templates make it easy to bill clients professionally without starting from scratch. Here's what you need to know and how to use them.</p>
+
+      <h2 class="text-3xl font-bold text-slate-900 mb-6">What to Include in an Invoice Template</h2>
+      <ul class="list-disc pl-5 mb-10 text-slate-600 space-y-2">
+        <li>Business name & logo</li>
+        <li>Contact details</li>
+        <li>Invoice number</li>
+        <li>Invoice date & due date</li>
+        <li>Client info</li>
+        <li>Line items with description, qty, rate, amount</li>
+        <li>Subtotal, sales tax, total</li>
+        <li>Payment terms</li>
+        <li>Notes</li>
+      </ul>
+      
+      <h2 id="templates-section" class="text-3xl font-bold text-slate-900 mb-6">Free Invoice Templates by Type</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 not-prose">
+        <div class="bg-white p-6 rounded-[12px] border border-slate-200 shadow-sm text-center">
+          <h3 class="font-bold text-lg mb-2">Freelancer</h3>
+          <p class="text-sm text-slate-500 mb-4">Great for creatives and consultants.</p>
+          <a href="#invoice-tool" data-template="freelancer" class="tab-btn active-tab inline-block bg-blue-50 text-blue-600 hover:bg-blue-100 px-4 py-2 rounded-lg text-sm font-semibold w-full transition-colors border border-blue-600">Use This Template</a>
+        </div>
+        <div class="bg-white p-6 rounded-[12px] border border-slate-200 shadow-sm text-center">
+          <h3 class="font-bold text-lg mb-2">Contractor</h3>
+          <p class="text-sm text-slate-500 mb-4">Ideal for trades and physical work.</p>
+          <a href="#invoice-tool" data-template="contractor" class="tab-btn inline-block bg-white text-slate-700 border border-slate-200 hover:border-blue-300 px-4 py-2 rounded-lg text-sm font-semibold w-full transition-colors">Use This Template</a>
+        </div>
+        <div class="bg-white p-6 rounded-[12px] border border-slate-200 shadow-sm text-center">
+          <h3 class="font-bold text-lg mb-2">Small Business</h3>
+          <p class="text-sm text-slate-500 mb-4">Perfect for retail and products.</p>
+          <a href="#invoice-tool" data-template="smallbiz" class="tab-btn inline-block bg-white text-slate-700 border border-slate-200 hover:border-blue-300 px-4 py-2 rounded-lg text-sm font-semibold w-full transition-colors">Use This Template</a>
+        </div>
+      </div>
+      <p class="text-center text-sm text-slate-500 mb-10">This template pre-fills the generator below.</p>
+    </div>
+  </article>
+
+  <div id="tpl-freelancer" class="template-panel">
+    <InvoiceGenerator client:load initialData={freelancerData as any} />
+  </div>
+  <div id="tpl-contractor" class="template-panel hidden">
+    <InvoiceGenerator client:load initialData={contractorData as any} />
+  </div>
+  <div id="tpl-smallbiz" class="template-panel hidden">
+    <InvoiceGenerator client:load initialData={smallbizData as any} />
+  </div>
+
+  <script is:inline>
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        document.querySelectorAll('.tab-btn').forEach(b => {
+          b.classList.remove('active-tab', 'bg-blue-50', 'text-blue-600', 'border-blue-600');
+          b.classList.add('bg-white', 'text-slate-700', 'border-slate-200');
+        });
+        document.querySelectorAll('.template-panel').forEach(p => p.classList.add('hidden'));
+        
+        this.classList.remove('bg-white', 'text-slate-700', 'border-slate-200');
+        this.classList.add('active-tab', 'bg-blue-50', 'text-blue-600', 'border-blue-600');
+        
+        document.getElementById('tpl-' + this.dataset.template).classList.remove('hidden');
+      });
+    });
+  </script>
+
+  <article class="py-16 bg-white">
+    <div class="max-w-3xl mx-auto px-6 prose prose-slate">
+      <h2 class="text-3xl font-bold text-slate-900 mb-6">Why Use an Online Generator Instead of a Static Template</h2>
+      <p class="mb-10 text-slate-600">Static templates (Word/Excel) require manual calculations, are error-prone, not mobile-friendly. Generator does math automatically, looks professional, downloadable as PDF, shareable via WhatsApp.</p>
+    </div>
+  </article>
+
+  <section class="py-20 bg-slate-50">
+    <div class="max-w-3xl mx-auto px-6">
+      <h2 class="text-4xl font-bold text-slate-900 tracking-tight text-center mb-14">Frequently Asked Questions</h2>
+      <div class="space-y-4">
+        {schemas[0].mainEntity.map(item => (
+          <details class="group bg-white rounded-[12px] border border-slate-200">
+            <summary class="flex justify-between items-center px-6 py-4 cursor-pointer font-semibold text-slate-900 list-none">
+              {item.name}
+              <svg class="transition-transform duration-200 group-open:rotate-180 shrink-0 ml-4 text-slate-400" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <p class="px-6 pb-5 text-slate-500 text-sm leading-relaxed">{item.acceptedAnswer.text}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>

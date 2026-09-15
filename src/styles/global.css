@@ -1,0 +1,40 @@
+@import "tailwindcss";
+@import "./print.css";
+
+
+/* ─── Design Tokens ──────────────────────────────────── */
+@theme {
+  --color-primary:        #2563EB;
+  --color-primary-hover:  #1D4ED8;
+  --color-primary-light:  #EFF6FF;
+  --color-accent:         #10B981;
+  --color-surface:        #F8FAFC;
+  --color-surface-border: #E2E8F0;
+  --color-foreground:     #0F172A;
+  --color-muted:          #64748B;
+  --color-muted-light:    #F1F5F9;
+  --color-error:          #EF4444;
+
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", Menlo, monospace;
+
+  --radius-sm:   6px;
+  --radius-md:   10px;
+  --radius-lg:   16px;
+  --radius-full: 9999px;
+
+  --shadow-card:    0 4px 16px rgba(0,0,0,0.08);
+  --shadow-invoice: 0 8px 32px rgba(0,0,0,0.12);
+  --shadow-primary: 0 4px 16px rgba(37,99,235,0.25);
+}
+
+/* ─── Base ───────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  color: var(--color-foreground);
+  background: #ffffff;
+  -webkit-font-smoothing: antialiased;
+}

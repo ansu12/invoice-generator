@@ -1,0 +1,36 @@
+﻿---
+// Reusable competitor comparison table
+// Used on: online-invoice-generator, blog/invoice-generator-vs-invoicesimple
+---
+
+<div class="overflow-x-auto my-10 rounded-[16px] border border-slate-200 shadow-[0_4px_16px_rgba(0,0,0,0.06)]">
+  <table class="w-full text-sm text-left">
+    <thead>
+      <tr class="bg-slate-900 text-white">
+        <th class="px-5 py-4 font-semibold w-1/4">Feature</th>
+        <th class="px-5 py-4 font-semibold text-center text-blue-300">InvoiceGen<br /><span class="text-xs font-normal opacity-75">(This Tool)</span></th>
+        <th class="px-5 py-4 font-semibold text-center">Invoice&#8209;Generator.com</th>
+        <th class="px-5 py-4 font-semibold text-center">InvoiceSimple</th>
+      </tr>
+    </thead>
+    <tbody>
+      {[
+        ["Signup required",      "No",          "No (basic)",      "Yes"],
+        ["Free invoice limit",   "Unlimited",   "Unlimited",       "3 / month"],
+        ["Watermarks on PDF",    "None",        "None",            "Yes"],
+        ["US sales tax fields",  "Yes",         "Manual",          "Partial"],
+        ["EIN / Tax ID field",   "Yes",         "No",              "No"],
+        ["WhatsApp sharing",     "Yes",         "No",              "No"],
+        ["Logo upload",          "Yes",         "Paid plan",       "Paid plan"],
+        ["Price",                "Free",        "Free (API paid)", "Free tier limited"],
+      ].map(([feature, us, igc, is_]) => (
+        <tr class="border-t border-slate-100 even:bg-slate-50/50">
+          <td class="px-5 py-3.5 font-medium text-slate-700">{feature}</td>
+          <td class="px-5 py-3.5 text-center font-semibold text-emerald-600">{us}</td>
+          <td class="px-5 py-3.5 text-center text-slate-600">{igc}</td>
+          <td class="px-5 py-3.5 text-center text-slate-600">{is_}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

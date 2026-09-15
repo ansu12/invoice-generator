@@ -1,0 +1,18 @@
+---
+/**
+ * Schema.astro
+ * Renders a JSON-LD structured data block.
+ * Pass a single schema object or an array of schema objects.
+ *
+ * Usage:
+ *   <Schema data={webAppSchema} />
+ *   <Schema data={[faqSchema, howToSchema]} />
+ */
+interface Props {
+  data: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const { data } = Astro.props;
+const json = JSON.stringify(Array.isArray(data) ? data : data);
+---
+<script type="application/ld+json" is:inline set:html={json} />

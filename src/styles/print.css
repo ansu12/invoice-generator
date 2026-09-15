@@ -1,0 +1,31 @@
+﻿/* ── Print Styles ─────────────────────────────────────────────────────── */
+@media print {
+  /* Hide everything on the page */
+  body * {
+    visibility: hidden !important;
+  }
+
+  /* Reveal only the invoice preview and its children */
+  #invoice-preview,
+  #invoice-preview * {
+    visibility: visible !important;
+  }
+
+  /* Position the preview at the top of the printed page */
+  #invoice-preview {
+    position: fixed !important;
+    inset: 0 !important;
+    padding: 0.75in !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    border: none !important;
+    background: white !important;
+    overflow: visible !important;
+  }
+
+  /* Ensure page margins are minimal */
+  @page {
+    margin: 0;
+    size: letter;
+  }
+}

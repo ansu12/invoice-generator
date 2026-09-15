@@ -1,0 +1,73 @@
+---
+import "@fontsource/inter/400.css";
+import "@fontsource/inter/500.css";
+import "@fontsource/inter/600.css";
+import "@fontsource/inter/700.css";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  ogType?: string;
+}
+
+const {
+  title,
+  description,
+  ogImage = "/og-image.png",
+  ogType = "website",
+  canonical,
+} = Astro.props;
+
+// Build canonical URL — prefer explicit prop, else derive from current path
+const siteBase = Astro.site ?? new URL("https://yourdomain.com");
+const canonicalURL = canonical
+  ? new URL(canonical, siteBase).href
+  : new URL(Astro.url.pathname, siteBase).href;
+
+const ogImageAbsolute = ogImage.startsWith("http")
+  ? ogImage
+  : new URL(ogImage, siteBase).href;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary SEO -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageAbsolute} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:site_name" content="InvoiceGen" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageAbsolute} />
+
+    <!-- Fonts handled by Fontsource -->
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Structured data slot — pages inject their own schemas here -->
+    <slot name="schema" />
+  </head>
+  <body class="bg-white text-slate-900">
+    <slot />
+  </body>
+</html>
