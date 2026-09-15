@@ -174,6 +174,35 @@ export default function InvoiceGenerator({ initialData, lang = defaultLang }: Co
   const activeTaxLabel = activeTaxSystem.label;
 
   const [loading, setLoading] = useState<"pdf" | "share" | null>(null);
+  const [activeStep, setActiveStep] = useState(1);
+  const [showFullPreview, setShowFullPreview] = useState(false);
+
+  const StepHeader = ({ step, title }: { step: number, title: string }) => {
+    const isActive = activeStep === step;
+    const isCompleted = activeStep > step;
+    return (
+      <div 
+        className={`md:hidden flex items-center justify-between pb-3 mb-4 border-b cursor-pointer ${isActive ? 'border-blue-500' : 'border-slate-100'}`}
+        onClick={() => setActiveStep(isActive ? 0 : step)}
+      >
+        <div className="flex items-center gap-3">
+          <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${isCompleted ? 'bg-emerald-500 text-white' : isActive ? 'bg-blue-600 text-white' : 'bg-slate-200 text-slate-500'}`}>
+            {isCompleted ? '✓' : step}
+          </div>
+          <h3 className={`font-semibold ${isActive ? 'text-blue-900' : 'text-slate-800'}`}>{title}</h3>
+        </div>
+      </div>
+    );
+  };
+
+  const NextButton = ({ step }: { step: number }) => (
+    <button 
+      onClick={() => setActiveStep(step + 1)}
+      className="mt-6 w-full py-3 bg-blue-50 text-blue-700 font-semibold rounded-[10px] hover:bg-blue-100 transition-colors md:hidden"
+    >
+      {step === 6 ? 'View Preview' : 'Next'}
+    </button>
+  );
   const previewRef = useRef<HTMLDivElement>(null);
 
   const sym = CURRENCIES.find((c) => c.code === data.currency)?.symbol ?? "$";
@@ -391,6 +420,7 @@ export default function InvoiceGenerator({ initialData, lang = defaultLang }: Co
                   <textarea className={`${inputCls} resize-none`} rows={2} placeholder="456 Client Ave, City"
                     value={data.toAddress} onChange={(e) => set("toAddress", e.target.value)} />
                 </div>
+                <NextButton step={2} />
               </div>
             </div>
 
@@ -421,6 +451,7 @@ export default function InvoiceGenerator({ initialData, lang = defaultLang }: Co
                   <input className={inputCls} type="date" value={data.dueDate}
                     onChange={(e) => set("dueDate", e.target.value)} />
                 </div>
+                <NextButton step={3} />
               </div>
             </div>
 
@@ -439,10 +470,10 @@ export default function InvoiceGenerator({ initialData, lang = defaultLang }: Co
                     <input className={inputCls} placeholder="Service or product"
                       value={item.description}
                       onChange={(e) => updateItem(item.id, "description", e.target.value)} />
-                    <input className={`${inputCls} text-center`} type="number" min="0" step="1"
+                    <input className={`${inputCls} text-center`} type="number" inputMode="decimal" min="0" step="1"
                       value={item.quantity}
                       onChange={(e) => updateItem(item.id, "quantity", parseFloat(e.target.value) || 0)} />
-                    <input className={`${inputCls} text-right`} type="number" min="0" step="0.01"
+                    <input className={`${inputCls} text-right`} type="number" inputMode="decimal" min="0" step="0.01"
                       placeholder="0.00" value={item.rate || ""}
                       onChange={(e) => updateItem(item.id, "rate", parseFloat(e.target.value) || 0)} />
                     <button onClick={() => removeItem(item.id)} disabled={data.items.length === 1}
@@ -455,7 +486,7 @@ export default function InvoiceGenerator({ initialData, lang = defaultLang }: Co
               </div>
 
               <button onClick={addItem}
-                className="mt-4 flex items-center gap-2 text-blue-600 hover:text-blue-700 text-sm font-semibold transition-colors">
+                  className="mt-4 w-full md:w-auto justify-center md:justify-start flex items-center gap-2 text-blue-600 hover:text-blue-700 text-sm font-semibold transition-colors">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M12 5v14M5 12h14"/></svg>
                 Add Line Item
               </button>
@@ -463,9 +494,10 @@ export default function InvoiceGenerator({ initialData, lang = defaultLang }: Co
               {/* Tax */}
               <div className="mt-4 flex items-center gap-3">
                 <label className="text-sm font-semibold text-slate-700 whitespace-nowrap">{t("tool.taxRate")}</label>
-                <input className={`${inputCls} w-28`} type="number" min="0" max="100" step="0.5"
+                <input className={`${inputCls} w-28`} type="number" inputMode="decimal" min="0" max="100" step="0.5"
                   value={data.taxRate || ""} placeholder="0"
                   onChange={(e) => set("taxRate", parseFloat(e.target.value) || 0)} />
+                <NextButton step={5} />
               </div>
             </div>
 
@@ -523,7 +555,7 @@ export default function InvoiceGenerator({ initialData, lang = defaultLang }: Co
           </div>{/* end LEFT */}
 
           {/* ── RIGHT: LIVE PREVIEW ────────────────────────────────── */}
-          <div className="lg:sticky lg:top-24">
+          <div className="md:sticky md:top-24">
             <div className="bg-slate-200 rounded-[16px] p-4 overflow-auto max-h-[88vh] min-h-[800px]">
               <div
                 id="invoice-preview"
@@ -637,6 +669,27 @@ export default function InvoiceGenerator({ initialData, lang = defaultLang }: Co
           </div>
 
         </div>
+      </div>
+
+      
+      {/* Mobile Fixed Download Bar */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 p-4 z-50 shadow-[0_-10px_40px_rgba(0,0,0,0.1)] flex gap-3 pb-safe">
+        <button
+          onClick={getPDFBlob}
+          disabled={loading !== null}
+          className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-[10px] transition-colors flex items-center justify-center gap-2 disabled:opacity-70"
+        >
+          {loading === "pdf" ? <Spinner /> : <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>}
+          {t("tool.downloadPdf")}
+        </button>
+        <button
+          onClick={getPDFBlob}
+          disabled={loading !== null}
+          className="bg-[#25D366] hover:bg-[#20bd5a] text-white font-semibold py-3 px-4 rounded-[10px] transition-colors flex items-center justify-center disabled:opacity-70 shadow-sm"
+          aria-label="Share via WhatsApp"
+        >
+          {loading === "share" ? <Spinner /> : <WhatsAppIcon />}
+        </button>
       </div>
 
       {/* Toast */}
