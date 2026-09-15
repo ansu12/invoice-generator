@@ -3,7 +3,7 @@ import { languages } from '../i18n/translations';
 
 const currentPath = Astro.url.pathname;
 // Remove any existing language prefix
-const pathWithoutLang = currentPath.replace(/^\/(es|hi)\//, '/').replace(/^\/(es|hi)$/, '/');
+const pathWithoutLang = currentPath.replace(/^\/(es|hi|fr|de|pt)\//, '/').replace(/^\/(es|hi|fr|de|pt)$/, '/');
 
 const getPathForLang = (lang: string) => {
   if (lang === 'en') return pathWithoutLang;
@@ -21,7 +21,7 @@ const currentLang = Astro.currentLocale || 'en';
   
   <div class="absolute right-0 mt-1 w-32 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 bg-white border border-slate-200 rounded-xl shadow-lg shadow-slate-200/50 overflow-hidden transform origin-top-right scale-95 group-hover:scale-100">
     <div class="py-1">
-      {Object.entries(languages).filter(([code]) => ['en', 'es', 'hi'].includes(code)).map(([code, name]) => (
+      {Object.entries(languages).filter(([code]) => ['en', 'es', 'hi', 'fr', 'de', 'pt'].includes(code)).map(([code, name]) => (
         <a 
           href={getPathForLang(code)}
           class={`block px-4 py-2 text-sm transition-colors ${currentLang === code ? 'bg-blue-50 text-blue-700 font-semibold' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'}`}
