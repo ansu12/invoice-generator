@@ -1,6 +1,4 @@
-﻿import jsPDF from 'jspdf';
-import autoTable from 'jspdf-autotable';
-import type { InvoiceData } from './types';
+﻿import type { InvoiceData } from './types';
 import { CURRENCIES } from './types';
 
 // ── Page constants (US Letter, inches) ─────────────────────────────────
@@ -33,6 +31,8 @@ function detectImgFormat(dataUrl: string): string {
 export async function generateInvoicePDF(
   data: InvoiceData
 ): Promise<{ blob: Blob; filename: string }> {
+  const { default: jsPDF } = await import('jspdf');
+  const { default: autoTable } = await import('jspdf-autotable');
   const doc = new jsPDF({ unit: 'in', format: 'letter' });
 
   const sym = CURRENCIES.find((c) => c.code === data.currency)?.symbol ?? '$';
