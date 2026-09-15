@@ -106,7 +106,49 @@ interface ComponentProps {
   lang?: string;
 }
 
-export default function InvoiceGenerator({ initialData, lang = defaultLang }: ComponentProps = {}) {
+
+const TEMPLATES = [
+  { id: 'freelancer', label: 'Freelancer', data: {
+      toName: "Acme Agency",
+      items: [
+        { id: "t1", description: "Design services", quantity: 1, rate: 1500 },
+        { id: "t2", description: "Development hours", quantity: 10, rate: 75 },
+        { id: "t3", description: "Revisions", quantity: 2, rate: 50 },
+      ],
+      notes: "Payment due within 14 days. Thank you for your business!",
+      paymentTerms: "Net 14"
+  }},
+  { id: 'contractor', label: 'Contractor', data: {
+      toName: "Smith Construction",
+      items: [
+        { id: "t4", description: "Labor (hours)", quantity: 40, rate: 45 },
+        { id: "t5", description: "Materials", quantity: 1, rate: 850 },
+        { id: "t6", description: "Equipment rental", quantity: 2, rate: 125 },
+      ],
+      notes: "Payment due upon receipt. Please make checks payable to my business name.",
+      paymentTerms: "Due on Receipt"
+  }},
+  { id: 'consultant', label: 'Consultant', data: {
+      toName: "Global Corp LLC",
+      items: [
+        { id: "t7", description: "Consulting hours", quantity: 15, rate: 120 },
+        { id: "t8", description: "Travel expenses", quantity: 1, rate: 350 },
+      ],
+      notes: "Net 30 terms. Late payments subject to 1.5% monthly fee.",
+      paymentTerms: "Net 30"
+  }},
+  { id: 'business', label: 'Small Business', data: {
+      toName: "Retail Customer",
+      items: [
+        { id: "t9", description: "Product Name", quantity: 5, rate: 45 },
+        { id: "t10", description: "Shipping", quantity: 1, rate: 15 },
+      ],
+      notes: "Thank you for your business! Return policy: 30 days with receipt.",
+      paymentTerms: "Due on Receipt"
+  }}
+];
+
+export default function InvoiceGenerator({ lang = defaultLang, initialData }: { lang?: string; initialData?: Partial<InvoiceData> }) {
   const t = (key: keyof typeof ui["en"]) => (ui as any)[lang]?.[key] || (ui as any)[defaultLang][key];
   
   useEffect(() => {
@@ -175,6 +217,27 @@ export default function InvoiceGenerator({ initialData, lang = defaultLang }: Co
 
   const [loading, setLoading] = useState<"pdf" | "share" | null>(null);
   const [activeStep, setActiveStep] = useState(1);
+
+  const applyTemplate = (tplId: string) => {
+    if (tplId === 'blank') {
+      if (confirm("Clear all fields and start blank?")) {
+        setData({ ...getBlankData(), activeTemplate: 'blank' });
+        setActiveStep(1);
+      }
+      return;
+    }
+    
+    const tpl = TEMPLATES.find(t => t.id === tplId);
+    if (!tpl) return;
+    
+    setData(prev => ({
+      ...prev,
+      ...tpl.data,
+      activeTemplate: tplId
+    }));
+    setToast({ message: "Template loaded. Edit any field to customize.", type: "success" });
+    setActiveStep(4); // Open line items so they see the change
+  };
   const [showFullPreview, setShowFullPreview] = useState(false);
 
   const StepHeader = ({ step, title }: { step: number, title: string }) => {

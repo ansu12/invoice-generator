@@ -29,6 +29,7 @@ export interface InvoiceData {
   taxRegion: string;
   taxLabel: string;
   taxRate: number;
+  activeTemplate?: string;
 }
 
 export const CURRENCIES = [
