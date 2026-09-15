@@ -1,6 +1,7 @@
 ﻿import type { InvoiceData } from './types';
 import { CURRENCIES } from './types';
 import { ui, defaultLang } from '../i18n/translations';
+import { TAX_SYSTEMS } from './taxes';
 
 // ── Page constants (US Letter, inches) ─────────────────────────────────
 const MARGIN = 0.75;
@@ -39,6 +40,8 @@ export async function generateInvoicePDF(
   const { default: jsPDF } = await import('jspdf');
   const { default: autoTable } = await import('jspdf-autotable');
   const doc = new jsPDF({ unit: 'in', format: 'letter' });
+  const activeTaxSystem = TAX_SYSTEMS.find(t => t.id === data.taxSystem) || TAX_SYSTEMS[0];
+  const activeTaxLabel = data.taxLabel || t("pdf.tax");
 
   const fmt = (n: number) =>
     new Intl.NumberFormat('en-US', {
@@ -225,7 +228,7 @@ export async function generateInvoicePDF(
 
   renderTotalRow(t("pdf.subtotal"), fmt(subtotal));
   if (data.taxRate > 0) {
-    renderTotalRow(`${t("pdf.tax")} (${data.taxRate}%)`, fmt(taxAmt));
+    renderTotalRow(`${activeTaxLabel} (${data.taxRate}%)`, fmt(taxAmt));
   }
 
   // Divider before total

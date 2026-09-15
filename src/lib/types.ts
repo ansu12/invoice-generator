@@ -11,6 +11,8 @@ export interface InvoiceData {
   fromAddress: string;
   fromPhone: string;
   fromEIN: string;
+  taxIdLabel: string;
+  taxId: string;
   logoUrl: string;
   toName: string;
   toEmail: string;
@@ -22,6 +24,9 @@ export interface InvoiceData {
   items: LineItem[];
   notes: string;
   paymentTerms: string;
+  taxSystem: string;
+  taxRegion: string;
+  taxLabel: string;
   taxRate: number;
 }
 

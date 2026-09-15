@@ -2,6 +2,7 @@ import { useState, useRef, useCallback, useEffect } from "react";
 import type { InvoiceData, LineItem } from "../lib/types";
 import { CURRENCIES } from "../lib/types";
 import { ui, defaultLang } from "../i18n/translations";
+import { TAX_SYSTEMS, US_STATES, EU_COUNTRIES, CA_PROVINCES, IN_RATES } from "../lib/taxes";
 
 // ── Helpers ────────────────────────────────────────────────────────────
 const newItem = (): LineItem => ({
@@ -24,6 +25,8 @@ const getDefaultData = (): InvoiceData => ({
   fromAddress: "",
   fromPhone: "",
   fromEIN: "",
+  taxIdLabel: "Tax ID",
+  taxId: "",
   logoUrl: "",
   toName: "",
   toEmail: "",
@@ -35,6 +38,9 @@ const getDefaultData = (): InvoiceData => ({
   items: [newItem()],
   notes: "",
   paymentTerms: "Net 30",
+  taxSystem: "Custom",
+  taxRegion: "",
+  taxLabel: "Tax",
   taxRate: 0,
 });
 
@@ -84,7 +90,7 @@ export default function InvoiceGenerator({ initialData, lang = defaultLang }: Co
         toEmail: "billing@globex.com",
         toAddress: "456 Corporate Blvd\nNew York, NY 10001",
         invoiceNumber: "INV-2026",
-        date: today(),
+        invoiceDate: today(),
         dueDate: dueIn30(),
         currency: "USD",
         taxRate: 8.5,
@@ -129,6 +135,10 @@ export default function InvoiceGenerator({ initialData, lang = defaultLang }: Co
   }, [data]);
 
   const [toast, setToast] = useState<ToastState | null>(null);
+
+  const activeTaxSystem = TAX_SYSTEMS.find(ts => ts.id === data.taxSystem) || TAX_SYSTEMS[0];
+  const activeTaxLabel = activeTaxSystem.label;
+
   const [loading, setLoading] = useState<"pdf" | "share" | null>(null);
   const previewRef = useRef<HTMLDivElement>(null);
 
@@ -502,8 +512,11 @@ export default function InvoiceGenerator({ initialData, lang = defaultLang }: Co
                     {data.fromAddress && (
                       <p className="text-slate-500 text-sm whitespace-pre-line">{data.fromAddress}</p>
                     )}
-                    {data.fromEIN && (
+                    {data.fromEIN && activeTaxSystem.idLabel === "EIN" && (
                       <p className="text-slate-500 text-sm">EIN: {data.fromEIN}</p>
+                    )}
+                    {data.taxId && activeTaxSystem.idLabel !== "EIN" && (
+                      <p className="text-slate-500 text-sm">{activeTaxSystem.idLabel}: {data.taxId}</p>
                     )}
                   </div>
                   <div className="text-right">
@@ -566,7 +579,7 @@ export default function InvoiceGenerator({ initialData, lang = defaultLang }: Co
                     </div>
                     {data.taxRate > 0 && (
                       <div className="flex justify-between text-slate-600">
-                        <span>{t("tool.tax")} ({data.taxRate}%)</span>
+                        <span>{data.taxLabel || t("tool.tax")} ({data.taxRate}%)</span>
                         <span>{fmt(taxAmt)}</span>
                       </div>
                     )}
