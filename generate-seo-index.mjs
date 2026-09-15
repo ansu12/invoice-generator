@@ -1,4 +1,6 @@
----
+﻿import fs from 'fs';
+
+const indexHtml = `---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
@@ -12,7 +14,7 @@ const schemas = [
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": `${BRAND} — Free Invoice Generator`,
+    "name": \`\${BRAND} — Free Invoice Generator\`,
     "url": SITE,
     "applicationCategory": "BusinessApplication",
     "operatingSystem": "Web Browser",
@@ -85,43 +87,62 @@ const schemas = [
       <p>Finally, it offers <strong>Instant WhatsApp Sharing</strong> and <strong>Clean PDF Export</strong>. Once your billing document is complete, you can generate a high-resolution, watermark-free PDF invoice with a single click. Alternatively, if you communicate with your clients primarily via mobile, you can use our built-in sharing feature to send the invoice directly to their WhatsApp, dramatically decreasing the time it takes for them to view and pay the bill.</p>
 
       <h2>Frequently Asked Questions</h2>
-    <div class="space-y-6">
-      <div class="bg-slate-50 p-6 rounded-xl border border-slate-100">
-        <h3 class="font-bold text-slate-900 text-lg mb-2">What is an invoice generator?</h3>
-        <p class="text-slate-600 leading-relaxed">An invoice generator is a specialized online tool designed to automate the creation of professional billing documents. Instead of manually formatting a complex word processor file, you simply fill your business details into a pre-structured invoice template. The generator handles all mathematical calculations, tax additions, and layout design automatically.</p>
-      </div>
-      <div class="bg-slate-50 p-6 rounded-xl border border-slate-100">
-        <h3 class="font-bold text-slate-900 text-lg mb-2">Is this invoice generator free to use?</h3>
-        <p class="text-slate-600 leading-relaxed">Yes, this tool is 100% free for both personal and commercial use. We do not charge subscription fees, we do not require a credit card, and we do not hide premium features behind a paywall. You can generate unlimited professional PDF invoices without ever paying a single cent.</p>
-      </div>
-      <div class="bg-slate-50 p-6 rounded-xl border border-slate-100">
-        <h3 class="font-bold text-slate-900 text-lg mb-2">Do I need to sign up?</h3>
-        <p class="text-slate-600 leading-relaxed">No signup is required whatsoever. We believe in providing a frictionless billing experience. You can access the invoice generator instantly, enter your client's details, and download the finished document without ever needing to register an account, verify an email, or remember a password.</p>
-      </div>
-      <div class="bg-slate-50 p-6 rounded-xl border border-slate-100">
-        <h3 class="font-bold text-slate-900 text-lg mb-2">Can I use it on my phone?</h3>
-        <p class="text-slate-600 leading-relaxed">Absolutely. The invoice generator features a fully responsive, mobile-first design. It adapts perfectly to the screen size of any smartphone or tablet, allowing contractors, freelancers, and small business owners to easily create, preview, and send professional billing documents while away from their desktop computers.</p>
-      </div>
-      <div class="bg-slate-50 p-6 rounded-xl border border-slate-100">
-        <h3 class="font-bold text-slate-900 text-lg mb-2">Does it add watermarks?</h3>
-        <p class="text-slate-600 leading-relaxed">No, we never add watermarks to your generated documents. Your final PDF invoice will be entirely clean and professional. The only branding that will appear on the document is the custom business logo that you choose to upload via the invoice template settings.</p>
-      </div>
-      <div class="bg-slate-50 p-6 rounded-xl border border-slate-100">
-        <h3 class="font-bold text-slate-900 text-lg mb-2">What tax fields does it support?</h3>
-        <p class="text-slate-600 leading-relaxed">The invoice generator fully supports advanced tax calculations. You can input an Employer Identification Number (EIN) for official reporting, and you can apply any custom sales tax, VAT, or GST percentage. The tool will automatically calculate the exact tax amount and seamlessly add it to your grand total.</p>
-      </div>
-      <div class="bg-slate-50 p-6 rounded-xl border border-slate-100">
-        <h3 class="font-bold text-slate-900 text-lg mb-2">Can I share invoices via WhatsApp?</h3>
-        <p class="text-slate-600 leading-relaxed">Yes, we have integrated a dedicated WhatsApp sharing feature. Once your PDF invoice is complete, you can simply click the share button to open WhatsApp and send the document directly to your client's smartphone, making the delivery process faster and often resulting in quicker payments.</p>
-      </div>
-      <div class="bg-slate-50 p-6 rounded-xl border border-slate-100">
-        <h3 class="font-bold text-slate-900 text-lg mb-2">Is my data safe?</h3>
-        <p class="text-slate-600 leading-relaxed">Your financial and client data is exceptionally safe because this invoice generator processes everything client-side. The actual compilation of the PDF invoice happens entirely within your local web browser. Your sensitive business information is never transmitted to, stored on, or analyzed by our remote servers.</p>
+      <div itemscope itemtype="https://schema.org/FAQPage">
+        <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <h3 itemprop="name">Is this invoice generator completely free to use?</h3>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <p itemprop="text">Yes, it is 100% free. We do not charge subscription fees, we do not require a credit card, and we do not restrict access to premium features. You can use the tool to create as many documents as you need without ever paying a dime.</p>
+          </div>
+        </div>
+        <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <h3 itemprop="name">Do I need to sign up for an account?</h3>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <p itemprop="text">No signup is required. You do not need to provide an email address, verify your identity, or create a password. We believe in removing all friction, allowing you to simply open the webpage, create your document, and download it instantly.</p>
+          </div>
+        </div>
+        <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <h3 itemprop="name">Can I use this invoice generator on my mobile phone?</h3>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <p itemprop="text">Absolutely. The platform features a fully responsive design, meaning it adapts perfectly to the screen size of your smartphone or tablet. You can easily generate, preview, and share a PDF invoice while on the go.</p>
+          </div>
+        </div>
+        <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <h3 itemprop="name">Will my downloaded PDF have a watermark?</h3>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <p itemprop="text">No, we never place watermarks on your generated documents. Your final PDF invoice will be completely clean and professional, displaying only your custom business logo and the billing details you entered into the tool.</p>
+          </div>
+        </div>
+        <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <h3 itemprop="name">What tax fields does the tool support?</h3>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <p itemprop="text">The tool supports an Employer Identification Number (EIN) field for US-based contractors, as well as a customizable tax percentage field. Simply enter your local sales tax, VAT, or GST rate, and the tool will calculate the exact tax amount automatically.</p>
+          </div>
+        </div>
+        <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <h3 itemprop="name">Can I share my invoices directly via WhatsApp?</h3>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <p itemprop="text">Yes! We built a dedicated WhatsApp sharing feature. Once your document is ready, you can click the share button to open WhatsApp and send the PDF invoice directly to your client's phone, which often results in much faster payments.</p>
+          </div>
+        </div>
+        <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <h3 itemprop="name">Is my financial data secure?</h3>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <p itemprop="text">Your data is extremely secure because this invoice generator processes everything client-side. Your business details, client information, and financial totals are processed locally in your web browser and are never transmitted to our remote servers.</p>
+          </div>
+        </div>
+        <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <h3 itemprop="name">Can I save my invoice template for later?</h3>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <p itemprop="text">To maximize your privacy, this tool operates as a single-session generator. We do not store your data between visits. You will start with a fresh invoice template each time you load the page, so be sure to download your PDF before leaving.</p>
+          </div>
+        </div>
       </div>
     </div>
-  <script type="application/ld+json" set:html={JSON.stringify({"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is an invoice generator?","acceptedAnswer":{"@type":"Answer","text":"An invoice generator is a specialized online tool designed to automate the creation of professional billing documents. Instead of manually formatting a complex word processor file, you simply fill your business details into a pre-structured invoice template. The generator handles all mathematical calculations, tax additions, and layout design automatically."}},{"@type":"Question","name":"Is this invoice generator free to use?","acceptedAnswer":{"@type":"Answer","text":"Yes, this tool is 100% free for both personal and commercial use. We do not charge subscription fees, we do not require a credit card, and we do not hide premium features behind a paywall. You can generate unlimited professional PDF invoices without ever paying a single cent."}},{"@type":"Question","name":"Do I need to sign up?","acceptedAnswer":{"@type":"Answer","text":"No signup is required whatsoever. We believe in providing a frictionless billing experience. You can access the invoice generator instantly, enter your client's details, and download the finished document without ever needing to register an account, verify an email, or remember a password."}},{"@type":"Question","name":"Can I use it on my phone?","acceptedAnswer":{"@type":"Answer","text":"Absolutely. The invoice generator features a fully responsive, mobile-first design. It adapts perfectly to the screen size of any smartphone or tablet, allowing contractors, freelancers, and small business owners to easily create, preview, and send professional billing documents while away from their desktop computers."}},{"@type":"Question","name":"Does it add watermarks?","acceptedAnswer":{"@type":"Answer","text":"No, we never add watermarks to your generated documents. Your final PDF invoice will be entirely clean and professional. The only branding that will appear on the document is the custom business logo that you choose to upload via the invoice template settings."}},{"@type":"Question","name":"What tax fields does it support?","acceptedAnswer":{"@type":"Answer","text":"The invoice generator fully supports advanced tax calculations. You can input an Employer Identification Number (EIN) for official reporting, and you can apply any custom sales tax, VAT, or GST percentage. The tool will automatically calculate the exact tax amount and seamlessly add it to your grand total."}},{"@type":"Question","name":"Can I share invoices via WhatsApp?","acceptedAnswer":{"@type":"Answer","text":"Yes, we have integrated a dedicated WhatsApp sharing feature. Once your PDF invoice is complete, you can simply click the share button to open WhatsApp and send the document directly to your client's smartphone, making the delivery process faster and often resulting in quicker payments."}},{"@type":"Question","name":"Is my data safe?","acceptedAnswer":{"@type":"Answer","text":"Your financial and client data is exceptionally safe because this invoice generator processes everything client-side. The actual compilation of the PDF invoice happens entirely within your local web browser. Your sensitive business information is never transmitted to, stored on, or analyzed by our remote servers."}}]})} />
-
-        </article>
+  </article>
 
   <Footer />
 </BaseLayout>
+`
+
+fs.writeFileSync('src/pages/index.astro', indexHtml);
+console.log('Done 3/3');
