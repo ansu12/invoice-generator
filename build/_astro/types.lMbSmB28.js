@@ -1,1 +1,0 @@
-var e=[{code:`USD`,symbol:`$`},{code:`EUR`,symbol:`€`},{code:`GBP`,symbol:`£`},{code:`AUD`,symbol:`A$`},{code:`CAD`,symbol:`C$`},{code:`INR`,symbol:`₹`}];export{e as t};

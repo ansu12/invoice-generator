@@ -101,6 +101,15 @@ export default function InvoiceGenerator({ initialData }: ComponentProps = {}) {
 
   const [data, setData] = useState<InvoiceData>(() => {
     const def = getDefaultData();
+    if (typeof window !== 'undefined') {
+      try {
+        const saved = localStorage.getItem('invoicegen_data');
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          return { ...def, ...parsed, items: parsed.items?.length ? parsed.items : def.items };
+        }
+      } catch (e) {}
+    }
     return initialData
       ? {
           ...def,
@@ -110,13 +119,22 @@ export default function InvoiceGenerator({ initialData }: ComponentProps = {}) {
       : def;
   });
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('invoicegen_data', JSON.stringify(data));
+    }
+  }, [data]);
+
   const [toast, setToast] = useState<ToastState | null>(null);
   const [loading, setLoading] = useState<"pdf" | "share" | null>(null);
   const previewRef = useRef<HTMLDivElement>(null);
 
   const sym = CURRENCIES.find((c) => c.code === data.currency)?.symbol ?? "$";
   const fmt = (n: number) =>
-    `${sym}${n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
+    new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: data.currency || "USD",
+    }).format(n);
 
   const subtotal = data.items.reduce((s, i) => s + i.quantity * i.rate, 0);
   const taxAmt = subtotal * (data.taxRate / 100);

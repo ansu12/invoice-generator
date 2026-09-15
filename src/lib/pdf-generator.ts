@@ -35,9 +35,11 @@ export async function generateInvoicePDF(
   const { default: autoTable } = await import('jspdf-autotable');
   const doc = new jsPDF({ unit: 'in', format: 'letter' });
 
-  const sym = CURRENCIES.find((c) => c.code === data.currency)?.symbol ?? '$';
   const fmt = (n: number) =>
-    `${sym}${n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`;
+    new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: data.currency || 'USD',
+    }).format(n);
 
   let y = MARGIN;
 

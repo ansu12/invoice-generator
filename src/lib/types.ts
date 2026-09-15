@@ -6,25 +6,20 @@
 }
 
 export interface InvoiceData {
-  // Sender
   fromName: string;
   fromEmail: string;
   fromAddress: string;
   fromPhone: string;
   fromEIN: string;
   logoUrl: string;
-  // Client
   toName: string;
   toEmail: string;
   toAddress: string;
-  // Invoice meta
   invoiceNumber: string;
   invoiceDate: string;
   dueDate: string;
   currency: string;
-  // Line items
   items: LineItem[];
-  // Footer
   notes: string;
   paymentTerms: string;
   taxRate: number;
@@ -32,9 +27,13 @@ export interface InvoiceData {
 
 export const CURRENCIES = [
   { code: 'USD', symbol: '$' },
-  { code: 'EUR', symbol: '\u20ac' },
-  { code: 'GBP', symbol: '\u00a3' },
-  { code: 'AUD', symbol: 'A$' },
+  { code: 'EUR', symbol: '€' },
+  { code: 'GBP', symbol: '£' },
+  { code: 'INR', symbol: '₹' },
   { code: 'CAD', symbol: 'C$' },
-  { code: 'INR', symbol: '\u20b9' },
+  { code: 'AUD', symbol: 'A$' },
+  { code: 'JPY', symbol: '¥' },
+  { code: 'AED', symbol: 'د.إ' },
+  { code: 'SGD', symbol: 'S$' },
+  { code: 'ZAR', symbol: 'R' }
 ];
