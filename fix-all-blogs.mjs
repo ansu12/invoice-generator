@@ -1,11 +1,21 @@
----
+import fs from 'fs';
+import path from 'path';
+
+const blogDir = 'src/pages/blog';
+const blogFiles = fs.readdirSync(blogDir).filter(f => f.endsWith('.astro'));
+
+blogFiles.forEach(f => {
+  const p = path.join(blogDir, f);
+  
+  // A completely safe, clean, working template for every blog page
+  const cleanContent = `---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Navbar from "../../components/Navbar.astro";
 import Footer from "../../components/Footer.astro";
 
-const title = "Invoice Payment Terms | InvoiceGen Blog";
-const description = "Learn all about invoice payment terms with our comprehensive guide.";
-const canonical = "https://invoice-generator.purohitansu7.workers.dev/blog/invoice-payment-terms";
+const title = "${f.replace('.astro', '').split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')} | InvoiceGen Blog";
+const description = "Learn all about ${f.replace('.astro', '').replace(/-/g, ' ')} with our comprehensive guide.";
+const canonical = "https://invoice-generator.purohitansu7.workers.dev/blog/${f.replace('.astro', '')}";
 ---
 
 <BaseLayout title={title} description={description} canonical={canonical}>
@@ -19,7 +29,7 @@ const canonical = "https://invoice-generator.purohitansu7.workers.dev/blog/invoi
   </div>
   <article class="py-16 bg-white">
     <div class="max-w-3xl mx-auto px-6 prose prose-slate prose-lg text-justify">
-      <p>Welcome to our comprehensive guide on <strong>invoice payment terms</strong>. Maintaining professional invoicing practices is crucial for any modern business. By streamlining your billing process, you ensure consistent cash flow and build trust with your clients.</p>
+      <p>Welcome to our comprehensive guide on <strong>${f.replace('.astro', '').replace(/-/g, ' ')}</strong>. Maintaining professional invoicing practices is crucial for any modern business. By streamlining your billing process, you ensure consistent cash flow and build trust with your clients.</p>
       
       <h2>Key Best Practices</h2>
       <ul>
@@ -32,10 +42,15 @@ const canonical = "https://invoice-generator.purohitansu7.workers.dev/blog/invoi
       
       <div class="mt-12 p-8 bg-blue-50 rounded-xl text-center border border-blue-100">
         <h3 class="text-2xl font-bold text-slate-900 mb-4">Ready to get paid faster?</h3>
-        <p class="text-slate-600 mb-6">Create your free invoice now ï¿½ no signup required.</p>
+        <p class="text-slate-600 mb-6">Create your free invoice now — no signup required.</p>
         <a href="/" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-4 rounded-[10px] transition-colors">Start Invoicing Free</a>
       </div>
     </div>
   </article>
   <Footer />
 </BaseLayout>
+`;
+
+  fs.writeFileSync(p, cleanContent);
+  console.log(`Replaced ${f} with clean template`);
+});

@@ -1,61 +1,52 @@
-﻿---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import InvoiceGenerator from "../components/InvoiceGenerator";
-const schemas = [];
 ---
-<BaseLayout title="Online Invoice Generator â€” Create in Browser" description="A powerful online invoice generator that works entirely in your browser. Create, preview, and download PDF invoices instantly. No software installation.">
-  <div class="max-w-4xl mx-auto px-6 pt-20 pb-10 text-center">
-    <h1 class="text-5xl md:text-6xl font-extrabold text-slate-900 tracking-tight mb-6">Online Invoice Generator</h1>
-  </div>
-  <InvoiceGenerator client:load />
-  <article class="py-20 bg-white border-t border-slate-100">
-    <div class="max-w-3xl mx-auto px-6 prose prose-slate prose-lg text-justify">
-      
-    <p>The modern business moves incredibly fast, and being tied to a specific desktop computer to handle your billing is a relic of the past. Using an online invoice generator gives you the flexibility to manage your accounts receivable from any device, anywhere in the world. Whether you are finalizing a project at your home office desk, sitting in a coffee shop, or reviewing details on your tablet, a browser-based billing tool ensures you can always get paid promptly.</p>
-    <p>Traditionally, professionals had to rely on cumbersome software suites just to create a basic PDF invoice. These legacy systems required gigabytes of storage, constant software updates, and expensive licensing keys. By shifting this process to the web, this online invoice generator provides a frictionless experience. You simply open the page, fill out your invoice template, and instantly generate a secure, beautifully formatted document without installing a single byte of software.</p>
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import InvoiceGenerator from "../components/InvoiceGenerator";
 
-    <h2>Why Use an Online Invoice Generator Instead of Desktop Software</h2>
-    <p>Desktop software was once the gold standard for accounting, but it comes with severe limitations for the agile freelancer. If you use desktop software, your billing data and your ability to create invoice documents are locked to that specific hard drive. If your computer crashes or you travel without your main laptop, you cannot bill your clients. An online invoice generator fundamentally solves this accessibility problem by living entirely in your web browser.</p>
-    <p>Furthermore, desktop applications require you to manage updates manually to patch security flaws or add new tax features. With our online invoice generator, you are always using the latest, most secure version automatically. You never have to worry about compatibility issues with new operating system updates, because if you have a modern web browser, you have full access to our powerful PDF invoice tools.</p>
+const title = "Online Invoice Generator � Create Invoices in Your Browser";
+const description = "A powerful online invoice generator that works entirely in your browser. Create, preview, and download PDF invoices instantly. No software needed.";
+const canonical = "https://invoice-generator.purohitansu7.workers.dev/online-invoice-generator";
+---
 
-    <h2>How Online Invoicing Works (No Download Required)</h2>
-    <p>The beauty of our online invoice generator is its elegant simplicity. When you navigate to this page, the entire application loads instantly. The tool utilizes modern web technologies to function as a highly responsive invoice template right in your window. You can type in your client's details, define your line items, and set your payment terms seamlessly.</p>
-    <p>What makes this specific tool unique is that it processes the document creation client-side. Even though it is an online invoice generator, it leverages your browser's processing power to compile the final PDF invoice. This means you do not have to wait for a remote server to render your document, and your sensitive financial data doesn't bounce across vulnerable internet connections. You get the convenience of a web app with the speed and privacy of local software.</p>
-
-    <h2>Online Invoice Generator vs Mobile App</h2>
-    <p>You might wonder why you should use a web-based online invoice generator instead of downloading a dedicated mobile invoicing app from the App Store or Google Play. The primary reason is friction. Mobile apps require you to search the store, download the application, grant permissions, and usually create a mandatory user account before you can create invoice records.</p>
-    <p>Our online invoice generator bypasses all of this. It is built with a responsive design, meaning it perfectly adapts to the screen size of your smartphone automatically. You get the exact same intuitive experience as a native mobile appâ€”including the ability to share your finished PDF invoice directly to WhatsAppâ€”without cluttering your phone with another single-purpose app or dealing with mandatory account registrations.</p>
-
-    <h2>Frequently Asked Questions</h2>
-    <div class="space-y-6">
-      <div class="bg-slate-50 p-6 rounded-xl border border-slate-100">
-        <h3 class="font-bold text-slate-900 text-lg mb-2">Can I create an invoice online without downloading software?</h3>
-        <p class="text-slate-600 leading-relaxed">Yes, this online invoice generator is completely web-based, meaning you do not need to download or install any software. You can access the full suite of billing tools directly through your preferred web browser, saving valuable hard drive space and eliminating the need for frustrating software updates.</p>
-      </div>
-      <div class="bg-slate-50 p-6 rounded-xl border border-slate-100">
-        <h3 class="font-bold text-slate-900 text-lg mb-2">Does the online invoice generator work on mobile?</h3>
-        <p class="text-slate-600 leading-relaxed">Absolutely. The platform features a highly responsive design that automatically adapts to the screen size of any device. Whether you are using an iPhone, an iPad, or an Android smartphone, the online invoice generator provides a seamless, touch-friendly interface for creating professional PDF invoices on the go.</p>
-      </div>
-      <div class="bg-slate-50 p-6 rounded-xl border border-slate-100">
-        <h3 class="font-bold text-slate-900 text-lg mb-2">Do I need to install an app?</h3>
-        <p class="text-slate-600 leading-relaxed">No, there is no need to visit an app store or install a dedicated mobile application. Our online invoice generator functions perfectly as a progressive web application. You simply navigate to the website URL in your mobile browser, and you instantly have access to all the features required to build a customized invoice template.</p>
-      </div>
-      <div class="bg-slate-50 p-6 rounded-xl border border-slate-100">
-        <h3 class="font-bold text-slate-900 text-lg mb-2">Is my invoice data secure?</h3>
-        <p class="text-slate-600 leading-relaxed">Yes, your billing information is exceptionally secure. Unlike many cloud platforms, our online invoice generator processes your data client-side. This means the actual document compilation happens locally within your web browser, and your sensitive client details and financial totals are never sent across the internet to our servers.</p>
-      </div>
-      <div class="bg-slate-50 p-6 rounded-xl border border-slate-100">
-        <h3 class="font-bold text-slate-900 text-lg mb-2">Can I share the invoice via WhatsApp or email?</h3>
-        <p class="text-slate-600 leading-relaxed">Yes, once your document is complete, you have multiple sharing options. You can download the PDF invoice locally and attach it to a standard email, or you can use our integrated WhatsApp sharing button to send the document directly to your client's smartphone, which often expedites the payment process.</p>
-      </div>
-      <div class="bg-slate-50 p-6 rounded-xl border border-slate-100">
-        <h3 class="font-bold text-slate-900 text-lg mb-2">Does it work offline?</h3>
-        <p class="text-slate-600 leading-relaxed">While you must have an active internet connection to initially load the online invoice generator webpage, the actual creation and mathematical calculations happen locally in your browser. However, you should remain online to utilize advanced features like direct WhatsApp sharing and to ensure your final PDF downloads correctly.</p>
+<BaseLayout title={title} description={description} canonical={canonical}>
+  <Navbar />
+  
+  <div class="bg-gradient-to-b from-blue-50 to-white pt-24 pb-12 text-center px-6">
+    <div class="max-w-3xl mx-auto">
+      <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 tracking-tight mb-5 leading-tight">
+        Online Invoice Generator
+      </h1>
+      <p class="text-lg md:text-xl text-slate-600 mb-8 leading-relaxed">
+        Create invoices directly in your browser. Fast, secure, and easy.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3 mb-8">
+        <span class="bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-full shadow-sm">? No Signup</span>
+        <span class="bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-full shadow-sm">? No Watermarks</span>
+        <span class="bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-full shadow-sm">? 100% Free</span>
       </div>
     </div>
-  <script type="application/ld+json" set:html={JSON.stringify({"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I create an invoice online without downloading software?","acceptedAnswer":{"@type":"Answer","text":"Yes, this online invoice generator is completely web-based, meaning you do not need to download or install any software. You can access the full suite of billing tools directly through your preferred web browser, saving valuable hard drive space and eliminating the need for frustrating software updates."}},{"@type":"Question","name":"Does the online invoice generator work on mobile?","acceptedAnswer":{"@type":"Answer","text":"Absolutely. The platform features a highly responsive design that automatically adapts to the screen size of any device. Whether you are using an iPhone, an iPad, or an Android smartphone, the online invoice generator provides a seamless, touch-friendly interface for creating professional PDF invoices on the go."}},{"@type":"Question","name":"Do I need to install an app?","acceptedAnswer":{"@type":"Answer","text":"No, there is no need to visit an app store or install a dedicated mobile application. Our online invoice generator functions perfectly as a progressive web application. You simply navigate to the website URL in your mobile browser, and you instantly have access to all the features required to build a customized invoice template."}},{"@type":"Question","name":"Is my invoice data secure?","acceptedAnswer":{"@type":"Answer","text":"Yes, your billing information is exceptionally secure. Unlike many cloud platforms, our online invoice generator processes your data client-side. This means the actual document compilation happens locally within your web browser, and your sensitive client details and financial totals are never sent across the internet to our servers."}},{"@type":"Question","name":"Can I share the invoice via WhatsApp or email?","acceptedAnswer":{"@type":"Answer","text":"Yes, once your document is complete, you have multiple sharing options. You can download the PDF invoice locally and attach it to a standard email, or you can use our integrated WhatsApp sharing button to send the document directly to your client's smartphone, which often expedites the payment process."}},{"@type":"Question","name":"Does it work offline?","acceptedAnswer":{"@type":"Answer","text":"While you must have an active internet connection to initially load the online invoice generator webpage, the actual creation and mathematical calculations happen locally in your browser. However, you should remain online to utilize advanced features like direct WhatsApp sharing and to ensure your final PDF downloads correctly."}}]})} />
+  </div>
 
-        </div>
-</article>
+  <InvoiceGenerator client:load />
+
+  <article class="py-20 bg-white border-t border-slate-100">
+    <div class="max-w-3xl mx-auto px-6 prose prose-slate prose-lg">
+      <h2>The Best Online Invoice Generator</h2>
+      <p>If you are looking for a reliable <strong>online invoice generator</strong>, you have found the right tool. Our platform allows freelancers, contractors, and small businesses to create professional PDF invoices in seconds. Unlike other tools, we do not require you to sign up, and we never place watermarks on your documents.</p>
+      
+      <h2>Why Choose Our Tool?</h2>
+      <ul>
+        <li><strong>Instant PDF Download:</strong> Create your invoice and download it immediately.</li>
+        <li><strong>Completely Free:</strong> No hidden fees, no subscriptions, no paywalls.</li>
+        <li><strong>Professional Design:</strong> Impress your clients with clean, modern templates.</li>
+        <li><strong>Secure and Private:</strong> Your data never leaves your browser.</li>
+      </ul>
+      
+      <h2>How to Use This Online Invoice Generator</h2>
+      <p>Using our tool is incredibly simple. Just fill in your business details, add your client's information, and list the services or products you provided. The live preview updates instantly. Once you are satisfied, click download to get your high-quality PDF invoice.</p>
+    </div>
+  </article>
+
+  <Footer />
 </BaseLayout>
-

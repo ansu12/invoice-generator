@@ -1,61 +1,52 @@
-﻿---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import InvoiceGenerator from "../components/InvoiceGenerator";
-const schemas = [];
 ---
-<BaseLayout title="Free Online Invoice Generator â€” No Signup" description="The best free online invoice generator. Create, format, and download beautiful PDF invoices directly from your browser without creating an account.">
-  <div class="max-w-4xl mx-auto px-6 pt-20 pb-10 text-center">
-    <h1 class="text-5xl md:text-6xl font-extrabold text-slate-900 tracking-tight mb-6">Free Online Invoice Generator</h1>
-  </div>
-  <InvoiceGenerator client:load />
-  <article class="py-20 bg-white border-t border-slate-100">
-    <div class="max-w-3xl mx-auto px-6 prose prose-slate prose-lg text-justify">
-      
-    <p>When you combine the convenience of a web browser with a completely cost-free tool, you get the ultimate billing solution for modern professionals. A free online invoice generator represents the pinnacle of accessible business administration. We designed this specific tool to cater to freelancers, independent contractors, and small business owners who require professional billing documents but refuse to be tied down by expensive, bloated software ecosystems.</p>
-    <p>Your time is incredibly valuable. Every minute you spend trying to format a messy Word document or fighting with an Excel spreadsheet is a minute you aren't doing billable work. By leveraging our free online invoice generator, you are instantly upgrading your administrative workflow. You gain access to a pristine, legally sound invoice template that you can fill out in real-time, drastically reducing the friction between completing a project and receiving your well-earned payment.</p>
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import InvoiceGenerator from "../components/InvoiceGenerator";
 
-    <h2>Free Online Invoice Generator â€” No Signup, No Download</h2>
-    <p>The two biggest barriers to trying new business software are mandatory account creation and required downloads. We eliminated both. This free online invoice generator requires absolutely no signup. You don't need to provide an email address, you don't need to create a password, and you certainly don't need to verify an account before you can start working. You simply arrive on the page and begin typing.</p>
-    <p>Equally important is the fact that there is zero software to install. Because it functions as a free online invoice generator, it operates entirely within the confines of your existing web browser. This means no waiting for large application files to download, no frustrating installation wizards, and no worrying about whether the software is compatible with your specific operating system. It is instant, frictionless billing.</p>
+const title = "Free Online Invoice Generator � Instant PDF Download";
+const description = "The top free online invoice generator. Create beautiful invoices online and download them as PDFs instantly. No registration or watermarks.";
+const canonical = "https://invoice-generator.purohitansu7.workers.dev/free-online-invoice-generator";
+---
 
-    <h2>How to Generate an Invoice Online in 60 Seconds</h2>
-    <p>Using this tool to create invoice documents is remarkably intuitive. First, you input your core business detailsâ€”your name, address, and emailâ€”into the top section. You can also upload a high-resolution logo to ensure the document matches your brand identity. Next, you fill out the client's information so the document is clearly addressed to the correct party.</p>
-    <p>The most important step is detailing the actual work. You add line items for your services or products, specifying the quantity and the rate. The free online invoice generator instantly calculates the math, factoring in any sales tax you apply, and updates the live preview on the right side of the screen. Once you review the preview and confirm everything is accurate, you simply click the download button to save your PDF invoice.</p>
-
-    <h2>Why Free Online Beats Paid Desktop Software</h2>
-    <p>It is natural to assume that paid desktop software provides a superior experience to a free online invoice generator, but for the vast majority of freelancers, the opposite is true. Paid desktop software is usually bloated with features like inventory management, payroll tracking, and complex bank reconciliations. If you only need to create invoice documents, these extra features just make the software confusing and slow to navigate.</p>
-    <p>Our free online invoice generator is hyper-focused on one singular task: generating perfect billing documents. Because it lives in the cloud, you can access it from any device, anywhere in the world, without worrying about transferring software licenses between computers. It provides the exact output you needâ€”a clean PDF invoiceâ€”without the monthly subscription fees or the steep learning curve of enterprise accounting software.</p>
-
-    <h2>Frequently Asked Questions</h2>
-    <div class="space-y-6">
-      <div class="bg-slate-50 p-6 rounded-xl border border-slate-100">
-        <h3 class="font-bold text-slate-900 text-lg mb-2">What is the best free online invoice generator?</h3>
-        <p class="text-slate-600 leading-relaxed">The best free online invoice generator is one that offers unlimited usage, requires no mandatory account registration, and produces watermark-free documents. Our platform meets all of these criteria, providing small businesses and freelancers with a premium billing solution that operates entirely in the browser without any hidden fees or deceptive trial periods.</p>
-      </div>
-      <div class="bg-slate-50 p-6 rounded-xl border border-slate-100">
-        <h3 class="font-bold text-slate-900 text-lg mb-2">Do I need to sign up for the free online invoice generator?</h3>
-        <p class="text-slate-600 leading-relaxed">No, you do not need to sign up or create an account. We designed this free online invoice generator to be completely frictionless. You can immediately access the tool, fill out your invoice template, and download your final PDF without ever providing an email address or creating a password.</p>
-      </div>
-      <div class="bg-slate-50 p-6 rounded-xl border border-slate-100">
-        <h3 class="font-bold text-slate-900 text-lg mb-2">Can I create an invoice online for free without watermarks?</h3>
-        <p class="text-slate-600 leading-relaxed">Yes, every single document you produce using our free online invoice generator is completely free of watermarks. We know that maintaining a professional image is vital for your business, so the final PDF invoice will only contain the text and custom business logo that you choose to upload.</p>
-      </div>
-      <div class="bg-slate-50 p-6 rounded-xl border border-slate-100">
-        <h3 class="font-bold text-slate-900 text-lg mb-2">How do I send the invoice to my client?</h3>
-        <p class="text-slate-600 leading-relaxed">Sending your billing document is incredibly easy. Once you generate the final PDF invoice, you can download it to your device and attach it to a professional email. Alternatively, if you communicate with your clients via mobile, you can use our built-in one-click WhatsApp sharing feature for instant delivery.</p>
-      </div>
-      <div class="bg-slate-50 p-6 rounded-xl border border-slate-100">
-        <h3 class="font-bold text-slate-900 text-lg mb-2">Does it support US sales tax?</h3>
-        <p class="text-slate-600 leading-relaxed">Yes, the tool is fully equipped to handle US sales tax requirements. You can easily input your state's specific sales tax percentage, and the free online invoice generator will automatically calculate the exact tax amount based on your line item subtotal, adding it seamlessly to the grand total.</p>
-      </div>
-      <div class="bg-slate-50 p-6 rounded-xl border border-slate-100">
-        <h3 class="font-bold text-slate-900 text-lg mb-2">Is there a limit on invoices?</h3>
-        <p class="text-slate-600 leading-relaxed">There is absolutely no limit on the number of invoices you can create. Whether you need to generate one document a month or a hundred, our free online invoice generator imposes no daily, weekly, or monthly usage caps. You have unrestricted access to professional billing tools 24/7.</p>
+<BaseLayout title={title} description={description} canonical={canonical}>
+  <Navbar />
+  
+  <div class="bg-gradient-to-b from-blue-50 to-white pt-24 pb-12 text-center px-6">
+    <div class="max-w-3xl mx-auto">
+      <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 tracking-tight mb-5 leading-tight">
+        Free Online Invoice Generator
+      </h1>
+      <p class="text-lg md:text-xl text-slate-600 mb-8 leading-relaxed">
+        The fastest way to create invoices online for free.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3 mb-8">
+        <span class="bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-full shadow-sm">? No Signup</span>
+        <span class="bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-full shadow-sm">? No Watermarks</span>
+        <span class="bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-full shadow-sm">? 100% Free</span>
       </div>
     </div>
-  <script type="application/ld+json" set:html={JSON.stringify({"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the best free online invoice generator?","acceptedAnswer":{"@type":"Answer","text":"The best free online invoice generator is one that offers unlimited usage, requires no mandatory account registration, and produces watermark-free documents. Our platform meets all of these criteria, providing small businesses and freelancers with a premium billing solution that operates entirely in the browser without any hidden fees or deceptive trial periods."}},{"@type":"Question","name":"Do I need to sign up for the free online invoice generator?","acceptedAnswer":{"@type":"Answer","text":"No, you do not need to sign up or create an account. We designed this free online invoice generator to be completely frictionless. You can immediately access the tool, fill out your invoice template, and download your final PDF without ever providing an email address or creating a password."}},{"@type":"Question","name":"Can I create an invoice online for free without watermarks?","acceptedAnswer":{"@type":"Answer","text":"Yes, every single document you produce using our free online invoice generator is completely free of watermarks. We know that maintaining a professional image is vital for your business, so the final PDF invoice will only contain the text and custom business logo that you choose to upload."}},{"@type":"Question","name":"How do I send the invoice to my client?","acceptedAnswer":{"@type":"Answer","text":"Sending your billing document is incredibly easy. Once you generate the final PDF invoice, you can download it to your device and attach it to a professional email. Alternatively, if you communicate with your clients via mobile, you can use our built-in one-click WhatsApp sharing feature for instant delivery."}},{"@type":"Question","name":"Does it support US sales tax?","acceptedAnswer":{"@type":"Answer","text":"Yes, the tool is fully equipped to handle US sales tax requirements. You can easily input your state's specific sales tax percentage, and the free online invoice generator will automatically calculate the exact tax amount based on your line item subtotal, adding it seamlessly to the grand total."}},{"@type":"Question","name":"Is there a limit on invoices?","acceptedAnswer":{"@type":"Answer","text":"There is absolutely no limit on the number of invoices you can create. Whether you need to generate one document a month or a hundred, our free online invoice generator imposes no daily, weekly, or monthly usage caps. You have unrestricted access to professional billing tools 24/7."}}]})} />
+  </div>
 
-        </div>
-</article>
+  <InvoiceGenerator client:load />
+
+  <article class="py-20 bg-white border-t border-slate-100">
+    <div class="max-w-3xl mx-auto px-6 prose prose-slate prose-lg">
+      <h2>The Best Free Online Invoice Generator</h2>
+      <p>If you are looking for a reliable <strong>free online invoice generator</strong>, you have found the right tool. Our platform allows freelancers, contractors, and small businesses to create professional PDF invoices in seconds. Unlike other tools, we do not require you to sign up, and we never place watermarks on your documents.</p>
+      
+      <h2>Why Choose Our Tool?</h2>
+      <ul>
+        <li><strong>Instant PDF Download:</strong> Create your invoice and download it immediately.</li>
+        <li><strong>Completely Free:</strong> No hidden fees, no subscriptions, no paywalls.</li>
+        <li><strong>Professional Design:</strong> Impress your clients with clean, modern templates.</li>
+        <li><strong>Secure and Private:</strong> Your data never leaves your browser.</li>
+      </ul>
+      
+      <h2>How to Use This Free Online Invoice Generator</h2>
+      <p>Using our tool is incredibly simple. Just fill in your business details, add your client's information, and list the services or products you provided. The live preview updates instantly. Once you are satisfied, click download to get your high-quality PDF invoice.</p>
+    </div>
+  </article>
+
+  <Footer />
 </BaseLayout>
-

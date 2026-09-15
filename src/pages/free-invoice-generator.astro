@@ -3,136 +3,48 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import InvoiceGenerator from "../components/InvoiceGenerator";
-import ComparisonTable from "../components/ComparisonTable.astro";
 
-const title = "Free Invoice Generator — No Signup, No Watermarks, Unlimited";
-const description = "Use this free invoice generator to create professional PDF invoices instantly. No signup, no watermarks, no limits. Fast, secure, and ready to download or share.";
+const title = "Free Invoice Generator � No Signup, No Watermarks";
+const description = "Use our 100% free invoice generator to create professional PDFs instantly. No limits, no watermarks, no email required. Start invoicing now.";
 const canonical = "https://invoice-generator.purohitansu7.workers.dev/free-invoice-generator";
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this free invoice generator really free?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Yes, 100% free. No credit card, no subscription, no paywall. Create unlimited PDF invoices forever." }
-    },
-    {
-      "@type": "Question",
-      "name": "Do I need to create an account?",
-      "acceptedAnswer": { "@type": "Answer", "text": "No account, no email, no registration needed. Just open the page and start creating your invoice immediately." }
-    },
-    {
-      "@type": "Question",
-      "name": "Are there watermarks on the PDF?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Zero watermarks. Your PDF invoice is 100% clean and professional. Only your uploaded logo appears on the document." }
-    },
-    {
-      "@type": "Question",
-      "name": "How many invoices can I create for free?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Unlimited. No caps, no monthly limits. Create as many as you need forever." }
-    },
-    {
-      "@type": "Question",
-      "name": "What payment methods can I list on the invoice?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Any method — bank transfer, PayPal, Stripe, credit card, or check. Add your preferred payment instructions in the Notes section." }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I use this for my small business?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Absolutely. This tool is built for freelancers, contractors, and small businesses. It includes tax fields, currency selection, logo upload, and EIN input." }
-    }
-  ]
-};
 ---
 
 <BaseLayout title={title} description={description} canonical={canonical}>
-  <Fragment slot="schema">
-    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-  </Fragment>
-
   <Navbar />
-
-  <!-- Hero -->
-  <div class="bg-gradient-to-b from-blue-50 to-white pt-20 pb-12 text-center px-6">
+  
+  <div class="bg-gradient-to-b from-blue-50 to-white pt-24 pb-12 text-center px-6">
     <div class="max-w-3xl mx-auto">
-      <div class="inline-flex items-center gap-2 bg-blue-100 text-blue-700 text-xs font-semibold px-4 py-1.5 rounded-full mb-6">
-        ✓ 100% Free — No Hidden Fees, Ever
-      </div>
       <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 tracking-tight mb-5 leading-tight">
         Free Invoice Generator
       </h1>
       <p class="text-lg md:text-xl text-slate-600 mb-8 leading-relaxed">
-        Create professional PDF invoices in seconds.<br class="hidden md:block" />
-        No signup, no watermarks, no limits.
+        100% Free. No hidden fees. No credit card required.
       </p>
-      <!-- Trust badges -->
       <div class="flex flex-wrap justify-center gap-3 mb-8">
-        <span class="flex items-center gap-1.5 bg-white border border-slate-200 text-slate-600 text-sm font-medium px-4 py-2 rounded-full shadow-sm">
-          <span class="text-emerald-500 font-bold">✓</span> No Signup Required
-        </span>
-        <span class="flex items-center gap-1.5 bg-white border border-slate-200 text-slate-600 text-sm font-medium px-4 py-2 rounded-full shadow-sm">
-          <span class="text-emerald-500 font-bold">✓</span> Unlimited Invoices
-        </span>
-        <span class="flex items-center gap-1.5 bg-white border border-slate-200 text-slate-600 text-sm font-medium px-4 py-2 rounded-full shadow-sm">
-          <span class="text-emerald-500 font-bold">✓</span> Instant PDF Download
-        </span>
-        <span class="flex items-center gap-1.5 bg-white border border-slate-200 text-slate-600 text-sm font-medium px-4 py-2 rounded-full shadow-sm">
-          <span class="text-emerald-500 font-bold">✓</span> No Watermarks
-        </span>
+        <span class="bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-full shadow-sm">? No Signup</span>
+        <span class="bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-full shadow-sm">? No Watermarks</span>
+        <span class="bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-full shadow-sm">? 100% Free</span>
       </div>
-      <a href="#invoice-tool" class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-8 py-4 rounded-xl transition-colors shadow-lg text-base">
-        Create Your Free Invoice Now →
-      </a>
     </div>
   </div>
 
-  <!-- Invoice Tool -->
   <InvoiceGenerator client:load />
 
-  <!-- Article Content -->
   <article class="py-20 bg-white border-t border-slate-100">
-    <div class="max-w-3xl mx-auto px-6 space-y-8 text-slate-700 leading-relaxed">
-
-      <p class="text-lg">Welcome to the ultimate <strong>free invoice generator</strong>. If you run a small business, work as a freelancer, or provide contractor services, managing your billing effectively is crucial to maintaining a steady cash flow. Our free invoice generator simplifies this entire process — generate a professional PDF invoice in seconds, no software download or subscription required.</p>
-
-      <h2 class="text-2xl font-bold text-slate-900 pt-4">Is This Free Invoice Generator Really Free?</h2>
-      <p>When searching for a free invoice generator, the #1 concern is hidden costs. Yes — this tool is genuinely <strong>100% free</strong>. No surprise paywalls before downloading your PDF, no mandatory account creation, no subscription. Most platforms operate on a freemium model: let you create one or two documents, then demand a credit card, or stamp a massive watermark on your PDFs. Not here.</p>
-
-      <h2 class="text-2xl font-bold text-slate-900 pt-4">What's Included in the Free Plan</h2>
-      <p>Because there are no paid tiers, every feature is free. You get unlimited line items, customizable tax rates (US Sales Tax, EU VAT, India GST, and more), currency selection (10+ currencies), logo upload, live preview, and instant PDF download or WhatsApp sharing. Everything runs locally in your browser — nothing is uploaded to any server.</p>
-
-      <h2 class="text-2xl font-bold text-slate-900 pt-4">How It Compares to Paid Invoice Software</h2>
-      <div class="not-prose my-8">
-        <ComparisonTable />
-      </div>
-      <p>Unlike FreshBooks, Zoho Invoice, or Wave — which charge $15–$30/month and require full account onboarding before you can create a single document — this tool lets you start immediately. The output is an identical, professional PDF invoice that serves the exact same legal and financial purpose.</p>
-
-      <!-- FAQ -->
-      <h2 class="text-2xl font-bold text-slate-900 pt-6">Frequently Asked Questions</h2>
-      <div class="space-y-4">
-        {[
-          { q: "Is this free invoice generator really free?", a: "Yes, 100% free. No credit card, no subscription, no paywall. Create unlimited PDF invoices forever." },
-          { q: "Do I need to create an account to use it?", a: "No account, no email, no registration. Just open the page and start typing your invoice immediately." },
-          { q: "Are there watermarks on the PDF?", a: "Zero watermarks. Your PDF is 100% professional and clean. Only your uploaded logo appears on the document." },
-          { q: "How many invoices can I create for free?", a: "Unlimited. No caps or monthly limits. Create as many as you need, forever." },
-          { q: "What payment methods can I list?", a: "Any method — bank transfer, PayPal, Stripe, credit card, or check. Add your preferred instructions in the Notes field." },
-          { q: "Can I use this for my small business?", a: "Absolutely. Built for freelancers, contractors, and small businesses with tax fields, multi-currency, logo upload, and EIN support." },
-        ].map(({ q, a }) => (
-          <details class="group bg-slate-50 rounded-xl border border-slate-100">
-            <summary class="flex justify-between items-center px-6 py-4 cursor-pointer font-semibold text-slate-900 list-none">
-              {q}
-              <svg class="transition-transform duration-200 group-open:rotate-180 shrink-0 ml-4 text-slate-400" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-            </summary>
-            <p class="px-6 pb-5 text-slate-500 text-sm leading-relaxed">{a}</p>
-          </details>
-        ))}
-      </div>
-
-      <p class="text-sm text-slate-400 pt-4">
-        Create unlimited professional invoices with our <a href="/" class="text-blue-600 hover:underline">invoice generator</a> — free, no account required.
-      </p>
+    <div class="max-w-3xl mx-auto px-6 prose prose-slate prose-lg">
+      <h2>The Best Free Invoice Generator</h2>
+      <p>If you are looking for a reliable <strong>free invoice generator</strong>, you have found the right tool. Our platform allows freelancers, contractors, and small businesses to create professional PDF invoices in seconds. Unlike other tools, we do not require you to sign up, and we never place watermarks on your documents.</p>
+      
+      <h2>Why Choose Our Tool?</h2>
+      <ul>
+        <li><strong>Instant PDF Download:</strong> Create your invoice and download it immediately.</li>
+        <li><strong>Completely Free:</strong> No hidden fees, no subscriptions, no paywalls.</li>
+        <li><strong>Professional Design:</strong> Impress your clients with clean, modern templates.</li>
+        <li><strong>Secure and Private:</strong> Your data never leaves your browser.</li>
+      </ul>
+      
+      <h2>How to Use This Free Invoice Generator</h2>
+      <p>Using our tool is incredibly simple. Just fill in your business details, add your client's information, and list the services or products you provided. The live preview updates instantly. Once you are satisfied, click download to get your high-quality PDF invoice.</p>
     </div>
   </article>
 

@@ -3,170 +3,39 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import Navbar from "../../components/Navbar.astro";
 import Footer from "../../components/Footer.astro";
 
-const title = "How to Create an Invoice — Step-by-Step Guide | InvoiceGen";
-const description = "Learn exactly how to create a professional invoice step by step. Covers what to include, how to number invoices, tax fields, payment terms, and how to send them.";
+const title = "How To Create An Invoice | InvoiceGen Blog";
+const description = "Learn all about how to create an invoice with our comprehensive guide.";
 const canonical = "https://invoice-generator.purohitansu7.workers.dev/blog/how-to-create-an-invoice";
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    { "@type": "Question", "name": "What must be included on an invoice?", "acceptedAnswer": { "@type": "Answer", "text": "A valid invoice must include: your business name and contact info, the client's name and address, a unique invoice number, invoice date, due date, itemized line items with quantities and rates, subtotal, tax amount, and grand total." } },
-    { "@type": "Question", "name": "How do I number my invoices?", "acceptedAnswer": { "@type": "Answer", "text": "Use sequential numbers like INV-001, INV-002, or include the year such as 2026-001. Never reuse invoice numbers — consistent numbering makes record-keeping and tax filing much easier." } },
-    { "@type": "Question", "name": "What payment terms should I use?", "acceptedAnswer": { "@type": "Answer", "text": "Net 30 is standard for B2B. For smaller clients, Net 14 or Due on Receipt is safer. Always specify a late fee such as 1.5% per month to encourage on-time payment." } },
-    { "@type": "Question", "name": "Do I need to charge tax on my invoice?", "acceptedAnswer": { "@type": "Answer", "text": "It depends on your location and registration status. US sellers may need to charge Sales Tax. EU and UK businesses charge VAT. India uses GST. Consult a local accountant if unsure." } },
-    { "@type": "Question", "name": "How do I send an invoice professionally?", "acceptedAnswer": { "@type": "Answer", "text": "Email a PDF with a clear subject line including the invoice number and due date. Include a brief, polite message and list all payment methods you accept." } }
-  ]
-};
 ---
 
 <BaseLayout title={title} description={description} canonical={canonical}>
-  <Fragment slot="schema">
-    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-  </Fragment>
-
   <Navbar />
-
-  <!-- Hero -->
-  <div class="pt-24 pb-12 bg-gradient-to-b from-slate-50 to-white border-b border-slate-100">
-    <div class="max-w-3xl mx-auto px-6 text-center">
-      <span class="inline-block bg-blue-100 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full mb-4 uppercase tracking-wider">Step-by-Step Guide</span>
-      <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-4 leading-tight">
-        How to Create an Invoice
+  <div class="pt-24 pb-12 bg-slate-50 text-center border-b border-slate-100">
+    <div class="max-w-4xl mx-auto px-6">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
+        {title.split(' | ')[0]}
       </h1>
-      <p class="text-lg text-slate-600 mb-6">Everything you need to bill clients professionally and get paid on time.</p>
-      <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-slate-500 text-sm font-medium">
-        <span>By <a href="/about" class="text-blue-600 hover:underline">Jane Doe</a></span>
-        <span class="hidden sm:inline text-slate-300">|</span>
-        <span>Published: <time datetime="2026-09-15">Sept 15, 2026</time></span>
-        <span class="hidden sm:inline text-slate-300">|</span>
-        <span>8 min read</span>
-      </div>
     </div>
   </div>
-
   <article class="py-16 bg-white">
-    <div class="max-w-3xl mx-auto px-6 prose prose-slate prose-lg">
-
-      <p class="lead">Creating a professional invoice is one of the most important skills for any freelancer or small business owner. A clear, accurate invoice gets you paid faster and protects you legally. This guide walks you through every element you need — and common mistakes to avoid.</p>
-
-      <h2>What Is an Invoice?</h2>
-      <p>An invoice is a formal billing document you send to a client after completing work or delivering goods. It records the services provided, the amount owed, the payment due date, and the payment methods you accept. Unlike a quote or estimate (which come before the work), an invoice is a legal request for payment.</p>
-      <p>For tax purposes, invoices are also records. Many countries require businesses to keep invoices for 5–7 years. A proper invoice protects both you and your client if a payment dispute ever arises.</p>
-
-      <h2>What to Include on an Invoice</h2>
-      <p>Every professional invoice must contain these elements:</p>
+    <div class="max-w-3xl mx-auto px-6 prose prose-slate prose-lg text-justify">
+      <p>Welcome to our comprehensive guide on <strong>how to create an invoice</strong>. Maintaining professional invoicing practices is crucial for any modern business. By streamlining your billing process, you ensure consistent cash flow and build trust with your clients.</p>
+      
+      <h2>Key Best Practices</h2>
       <ul>
-        <li><strong>Your business name, logo, and contact details</strong> — email, phone, and address</li>
-        <li><strong>Client name and billing address</strong> — ensure it matches their records exactly</li>
-        <li><strong>Unique invoice number</strong> — e.g., INV-001 or INV-2026-045</li>
-        <li><strong>Invoice date</strong> — the day you issued the invoice</li>
-        <li><strong>Payment due date</strong> — e.g., Net 30 means 30 days from the invoice date</li>
-        <li><strong>Itemized list of services/products</strong> — description, quantity, unit rate, and line total</li>
-        <li><strong>Subtotal</strong> before tax</li>
-        <li><strong>Tax amount</strong> — VAT, GST, or Sales Tax if applicable</li>
-        <li><strong>Grand total</strong> in the agreed currency</li>
-        <li><strong>Payment instructions</strong> — bank account, PayPal, or other methods</li>
-        <li><strong>Notes</strong> — thank-you message, late fee policy, or terms</li>
+        <li>Always include clear payment terms.</li>
+        <li>Send your invoices promptly after work is completed.</li>
+        <li>Follow up politely but firmly on overdue payments.</li>
       </ul>
-
-      <h2>Step-by-Step: Creating Your Invoice</h2>
-
-      <h3>Step 1 — Enter Your Business Details</h3>
-      <p>Start with your sender information: your full business name (or personal name if you're a sole trader), email, phone, and mailing address. If you have a logo, add it — it immediately elevates the document from amateur to professional. If you're in the US, include your EIN (Employer Identification Number). In Europe, include your VAT registration number.</p>
-
-      <h3>Step 2 — Add Your Client's Details</h3>
-      <p>Enter the client's legal business name, contact email, and billing address. This is critical: if you send an invoice to the wrong address or with the client's name misspelled, their accounts payable team may delay payment or reject it entirely. Always double-check before sending.</p>
-
-      <h3>Step 3 — Assign a Unique Invoice Number</h3>
-      <p>Every invoice must have a unique number. A simple sequential system like INV-001, INV-002 works perfectly for most freelancers. If you work with multiple clients, you can prefix with their code: ACME-001, SMITH-001. Never skip or reuse numbers — it creates accounting confusion and can trigger tax audits.</p>
-
-      <h3>Step 4 — Set the Invoice Date and Due Date</h3>
-      <p>The invoice date is today. The due date depends on your agreed payment terms:</p>
-      <ul>
-        <li><strong>Due on Receipt</strong> — payment expected immediately (good for small projects)</li>
-        <li><strong>Net 14</strong> — 14 days from the invoice date</li>
-        <li><strong>Net 30</strong> — 30 days (standard for B2B)</li>
-        <li><strong>Net 60</strong> — 60 days (common in enterprise or government work)</li>
-      </ul>
-      <p>The shorter your payment term, the faster you get paid. If you have leverage, always negotiate the shortest term your client will accept.</p>
-
-      <h3>Step 5 — Itemize Your Line Items</h3>
-      <p>List every service or product as a separate line. For each item, include: a clear description (e.g., "Homepage design — 2 revisions included"), the quantity (hours, units, or deliverables), the unit rate, and the line total. Never lump everything into a vague "Services rendered" line — it leads to disputes and rejected invoices.</p>
-
-      <h3>Step 6 — Apply the Correct Tax</h3>
-      <p>Tax rules vary by country and registration status:</p>
-      <ul>
-        <li><strong>USA:</strong> Sales Tax varies by state (0%–10.25%). Only charge if you have tax nexus in the client's state.</li>
-        <li><strong>EU:</strong> VAT typically 20–25%. Apply reverse charge for cross-border B2B transactions.</li>
-        <li><strong>UK:</strong> VAT at 20% if VAT-registered (threshold: £90,000 turnover).</li>
-        <li><strong>India:</strong> GST at 0%, 5%, 12%, 18%, or 28% depending on the service category.</li>
-        <li><strong>Australia:</strong> GST at 10% if registered (threshold: AUD 75,000).</li>
-      </ul>
-      <p>If you are not registered for tax collection, state "Tax: Not Applicable" rather than leaving the field blank.</p>
-
-      <h3>Step 7 — Download and Send the PDF</h3>
-      <p>Once the preview looks correct, download your invoice as a PDF. Email it with a subject line like: <em>"Invoice #INV-001 from [Business Name] — Due [Date]"</em>. Include a brief, polite message and list all the payment methods you accept. Following up 3 days before the due date — if unpaid — is professional, not pushy, and significantly increases your on-time payment rate.</p>
-
-      <h2>Common Mistakes to Avoid</h2>
-      <ul>
-        <li><strong>No late fee policy</strong> — always state "A 1.5% monthly fee applies to overdue balances"</li>
-        <li><strong>Vague line items</strong> — be specific so clients know exactly what they are paying for</li>
-        <li><strong>Wrong currency</strong> — confirm with the client upfront: USD, EUR, GBP, INR, etc.</li>
-        <li><strong>Missing payment details</strong> — include your bank account or payment link directly on the invoice</li>
-        <li><strong>Not following up</strong> — 30% of late invoices are simply forgotten, not disputed</li>
-      </ul>
-
-      <!-- FAQ -->
-      <h2>Frequently Asked Questions</h2>
-      <div class="not-prose space-y-3">
-        {[
-          { q: "What must be included on an invoice?", a: "Your business info, client info, a unique invoice number, invoice date, due date, itemized line items, subtotal, tax, and grand total. Payment instructions and your late fee policy should also be included." },
-          { q: "How do I number my invoices?", a: "Use sequential numbers like INV-001, INV-002. You can prefix with the year (2026-001) or client code (ACME-001). Never reuse invoice numbers." },
-          { q: "What payment terms should I use?", a: "Net 30 is standard for B2B. For smaller clients, Net 14 or Due on Receipt is safer. Always state a late fee to encourage on-time payment." },
-          { q: "Do I need to charge tax on my invoice?", a: "It depends on your location and registration status. US sellers may need Sales Tax, EU/UK charge VAT, and India uses GST. Consult a local accountant if unsure." },
-          { q: "How do I send an invoice professionally?", a: "Email a PDF with a subject line including the invoice number and due date. Include a brief, polite message listing all payment methods you accept." },
-        ].map(({ q, a }) => (
-          <details class="group bg-slate-50 rounded-xl border border-slate-100">
-            <summary class="flex justify-between items-center px-6 py-4 cursor-pointer font-semibold text-slate-900 list-none">
-              {q}
-              <svg class="transition-transform duration-200 group-open:rotate-180 shrink-0 ml-4 text-slate-400" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-            </summary>
-            <p class="px-6 pb-5 text-slate-500 text-sm leading-relaxed">{a}</p>
-          </details>
-        ))}
+      
+      <p>For a seamless invoicing experience, we highly recommend using our free tools to generate professional PDFs instantly without any signup.</p>
+      
+      <div class="mt-12 p-8 bg-blue-50 rounded-xl text-center border border-blue-100">
+        <h3 class="text-2xl font-bold text-slate-900 mb-4">Ready to get paid faster?</h3>
+        <p class="text-slate-600 mb-6">Create your free invoice now � no signup required.</p>
+        <a href="/" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-4 rounded-[10px] transition-colors">Start Invoicing Free</a>
       </div>
-
-      <!-- Author bio -->
-      <div class="not-prose mt-16 pt-8 border-t border-slate-100 flex items-start gap-5 bg-slate-50 p-8 rounded-2xl">
-        <div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-lg shrink-0">JD</div>
-        <div>
-          <h4 class="text-base font-bold text-slate-900 mb-1">About Jane Doe</h4>
-          <p class="text-slate-600 leading-relaxed text-sm">Jane Doe is a certified financial consultant and small business advocate with over a decade of experience helping freelancers streamline their accounting. She writes about invoicing, cash flow, and tax compliance.</p>
-        </div>
-      </div>
-
-      <!-- Related links -->
-      <div class="not-prose mt-8 grid sm:grid-cols-2 gap-4">
-        <a href="/blog/what-is-an-invoice" class="block p-5 bg-white border border-slate-200 rounded-xl hover:border-blue-400 hover:shadow-sm transition-all group">
-          <p class="text-xs text-slate-400 uppercase tracking-wider mb-1">Related Guide</p>
-          <p class="font-semibold text-slate-900 group-hover:text-blue-600">What Is an Invoice? &rarr;</p>
-        </a>
-        <a href="/blog/invoice-payment-terms" class="block p-5 bg-white border border-slate-200 rounded-xl hover:border-blue-400 hover:shadow-sm transition-all group">
-          <p class="text-xs text-slate-400 uppercase tracking-wider mb-1">Related Guide</p>
-          <p class="font-semibold text-slate-900 group-hover:text-blue-600">Invoice Payment Terms Explained &rarr;</p>
-        </a>
-      </div>
-
-      <!-- CTA -->
-      <div class="not-prose mt-10 p-8 bg-indigo-50 rounded-xl text-center border border-indigo-100">
-        <h3 class="text-2xl font-bold text-slate-900 mb-3">Ready to create your invoice?</h3>
-        <p class="text-slate-600 mb-6">Use our free invoice generator — no signup required. Download a professional PDF in under 60 seconds.</p>
-        <a href="/" class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-8 py-4 rounded-xl transition-colors">Create Free Invoice &rarr;</a>
-      </div>
-
     </div>
   </article>
-
   <Footer />
 </BaseLayout>
