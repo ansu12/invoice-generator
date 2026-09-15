@@ -17,7 +17,7 @@ const dueIn30 = () => {
   return d.toISOString().split("T")[0]!;
 };
 
-const DEFAULT_DATA: InvoiceData = {
+const getDefaultData = (): InvoiceData => ({
   fromName: "",
   fromEmail: "",
   fromAddress: "",
@@ -35,7 +35,7 @@ const DEFAULT_DATA: InvoiceData = {
   notes: "",
   paymentTerms: "Net 30",
   taxRate: 0,
-};
+});
 
 // ── Toast ─────────────────────────────────────────────────────────────
 interface ToastState { msg: string; type: "error" | "success" }
@@ -67,15 +67,16 @@ interface ComponentProps {
 }
 
 export default function InvoiceGenerator({ initialData }: ComponentProps = {}) {
-  const [data, setData] = useState<InvoiceData>(() =>
-    initialData
+  const [data, setData] = useState<InvoiceData>(() => {
+    const def = getDefaultData();
+    return initialData
       ? {
-          ...DEFAULT_DATA,
+          ...def,
           ...initialData,
-          items: initialData.items?.length ? initialData.items : DEFAULT_DATA.items,
+          items: initialData.items?.length ? initialData.items : def.items,
         }
-      : DEFAULT_DATA
-  );
+      : def;
+  });
 
   const [toast, setToast] = useState<ToastState | null>(null);
   const [loading, setLoading] = useState<"pdf" | "share" | null>(null);
