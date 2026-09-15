@@ -20,7 +20,7 @@ const dueIn30 = () => {
   return d.toISOString().split("T")[0]!;
 };
 
-const getDefaultData = (): InvoiceData => ({
+const getBlankData = (): InvoiceData => ({
   fromName: "",
   fromEmail: "",
   fromAddress: "",
@@ -44,6 +44,36 @@ const getDefaultData = (): InvoiceData => ({
   taxRegion: "",
   taxLabel: "Tax",
   taxRate: 0,
+});
+
+const getSampleData = (): InvoiceData => ({
+  fromName: "Acme Design Studio",
+  fromEmail: "hello@acmedesign.com",
+  fromAddress: "123 Creative Blvd\nSan Francisco, CA 94110",
+  fromPhone: "(555) 123-4567",
+  fromEIN: "XX-XXXXXXX",
+  taxIdLabel: "Tax ID",
+  taxId: "",
+  logoUrl: "",
+  toName: "Sample Client Inc.",
+  toEmail: "billing@sampleclient.com",
+  toAddress: "456 Market St\nNew York, NY 10001",
+  invoiceNumber: "INV-001",
+  invoiceDate: today(),
+  dueDate: dueIn30(),
+  dateFormat: "auto",
+  currency: "USD",
+  items: [
+    { id: crypto.randomUUID(), description: "Website design — homepage", quantity: 1, rate: 1500 },
+    { id: crypto.randomUUID(), description: "Logo design", quantity: 1, rate: 500 },
+    { id: crypto.randomUUID(), description: "Revisions", quantity: 3, rate: 75 },
+  ],
+  notes: "Thank you for your business. Payment due within 30 days.",
+  paymentTerms: "Net 30",
+  taxSystem: "US",
+  taxRegion: "California",
+  taxLabel: "Sales Tax",
+  taxRate: 7.25,
 });
 
 // ── Toast ─────────────────────────────────────────────────────────────
@@ -112,23 +142,24 @@ export default function InvoiceGenerator({ initialData, lang = defaultLang }: Co
   }, []);
 
   const [data, setData] = useState<InvoiceData>(() => {
-    const def = getDefaultData();
+    const blank = getBlankData();
+    const sample = getSampleData();
     if (typeof window !== 'undefined') {
       try {
         const saved = localStorage.getItem('invoicegen_data');
         if (saved) {
           const parsed = JSON.parse(saved);
-          return { ...def, ...parsed, items: parsed.items?.length ? parsed.items : def.items };
+          return { ...blank, ...parsed, items: parsed.items?.length ? parsed.items : blank.items };
         }
       } catch (e) {}
     }
     return initialData
       ? {
-          ...def,
+          ...blank,
           ...initialData,
-          items: initialData.items?.length ? initialData.items : def.items,
+          items: initialData.items?.length ? initialData.items : blank.items,
         }
-      : def;
+      : sample;
   });
 
   useEffect(() => {
