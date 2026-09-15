@@ -27,10 +27,13 @@ const canonicalURL = canonical
   ? new URL(canonical, siteBase).href
   : new URL(Astro.url.pathname, siteBase).href;
 
-const pathWithoutLang = Astro.url.pathname.replace(/^\/(es|hi)\//, '/').replace(/^\/(es|hi)$/, '/');
+const pathWithoutLang = Astro.url.pathname.replace(/^\/(es|hi|fr|de|pt)\//, '/').replace(/^\/(es|hi|fr|de|pt)$/, '/');
 const urlEn = new URL(pathWithoutLang, siteBase).href;
 const urlEs = new URL('/es' + pathWithoutLang.replace(/\/$/, '') + '/', siteBase).href;
 const urlHi = new URL('/hi' + pathWithoutLang.replace(/\/$/, '') + '/', siteBase).href;
+const urlFr = new URL('/fr' + pathWithoutLang.replace(/\/$/, '') + '/', siteBase).href;
+const urlDe = new URL('/de' + pathWithoutLang.replace(/\/$/, '') + '/', siteBase).href;
+const urlPt = new URL('/pt' + pathWithoutLang.replace(/\/$/, '') + '/', siteBase).href;
 
 
 const ogImageAbsolute = ogImage.startsWith("http")
@@ -55,6 +58,9 @@ const ogImageAbsolute = ogImage.startsWith("http")
     <link rel="alternate" hreflang="en" href={urlEn} />
     <link rel="alternate" hreflang="es" href={urlEs.replace(/\/\/$/, '/')} />
     <link rel="alternate" hreflang="hi" href={urlHi.replace(/\/\/$/, '/')} />
+    <link rel="alternate" hreflang="fr" href={urlFr.replace(/\/\/$/, '/')} />
+    <link rel="alternate" hreflang="de" href={urlDe.replace(/\/\/$/, '/')} />
+    <link rel="alternate" hreflang="pt" href={urlPt.replace(/\/\/$/, '/')} />
     <link rel="alternate" hreflang="x-default" href={urlEn} />
 
     <!-- Open Graph -->
