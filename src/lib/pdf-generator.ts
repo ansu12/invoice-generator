@@ -2,6 +2,7 @@
 import { CURRENCIES } from './types';
 import { ui, defaultLang } from '../i18n/translations';
 import { TAX_SYSTEMS } from './taxes';
+import { formatDate } from './date-helper';
 
 // ── Page constants (US Letter, inches) ─────────────────────────────────
 const MARGIN = 0.75;

@@ -20,6 +20,7 @@ export interface InvoiceData {
   invoiceNumber: string;
   invoiceDate: string;
   dueDate: string;
+  dateFormat: string;
   currency: string;
   items: LineItem[];
   notes: string;

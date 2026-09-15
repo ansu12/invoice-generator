@@ -3,6 +3,7 @@ import type { InvoiceData, LineItem } from "../lib/types";
 import { CURRENCIES } from "../lib/types";
 import { ui, defaultLang } from "../i18n/translations";
 import { TAX_SYSTEMS, US_STATES, EU_COUNTRIES, CA_PROVINCES, IN_RATES } from "../lib/taxes";
+import { formatDate } from "../lib/date-helper";
 
 // ── Helpers ────────────────────────────────────────────────────────────
 const newItem = (): LineItem => ({
@@ -34,6 +35,7 @@ const getDefaultData = (): InvoiceData => ({
   invoiceNumber: "INV-001",
   invoiceDate: today(),
   dueDate: dueIn30(),
+  dateFormat: "auto",
   currency: "USD",
   items: [newItem()],
   notes: "",
@@ -92,6 +94,7 @@ export default function InvoiceGenerator({ initialData, lang = defaultLang }: Co
         invoiceNumber: "INV-2026",
         invoiceDate: today(),
         dueDate: dueIn30(),
+        dateFormat: "auto",
         currency: "USD",
         taxRate: 8.5,
         notes: "Thank you for your business! Please make payment within 30 days.",
@@ -525,9 +528,9 @@ export default function InvoiceGenerator({ initialData, lang = defaultLang }: Co
                       <p><span className="text-slate-400 text-xs uppercase tracking-wider">{t("tool.invoiceNum")}</span><br />
                         <span className="font-semibold text-slate-900">{data.invoiceNumber}</span></p>
                       <p className="mt-2"><span className="text-slate-400 text-xs uppercase tracking-wider">Date</span><br />
-                        <span className="text-slate-700">{data.invoiceDate || "—"}</span></p>
+                        <span className="text-slate-700">{formatDate(data.invoiceDate, data.dateFormat) || "—"}</span></p>
                       <p className="mt-2"><span className="text-slate-400 text-xs uppercase tracking-wider">{t("tool.dueDate")}</span><br />
-                        <span className="font-semibold text-slate-900">{data.dueDate || "—"}</span></p>
+                        <span className="font-semibold text-slate-900">{formatDate(data.dueDate, data.dateFormat) || "—"}</span></p>
                       {data.paymentTerms && (
                         <p className="mt-2"><span className="text-slate-400 text-xs uppercase tracking-wider">Terms</span><br />
                           <span className="text-slate-700">{data.paymentTerms}</span></p>
