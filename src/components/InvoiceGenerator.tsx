@@ -235,7 +235,7 @@ export default function InvoiceGenerator({ lang = defaultLang, initialData }: { 
       ...tpl.data,
       activeTemplate: tplId
     }));
-    setToast({ message: "Template loaded. Edit any field to customize.", type: "success" });
+    showToast("Template loaded! Edit any field to customize.", "success");
     setActiveStep(4); // Open line items so they see the change
   };
   const [showFullPreview, setShowFullPreview] = useState(false);
@@ -398,7 +398,8 @@ export default function InvoiceGenerator({ lang = defaultLang, initialData }: { 
 
             {/* Your Details */}
             <div className={cardCls}>
-              <h3 className="font-semibold text-slate-900 mb-4">Your Details</h3>
+              <StepHeader step={1} title="Your Business" />
+              <div className={activeStep === 1 ? "md:block" : "hidden md:block"}>
 
               {/* Logo upload */}
               <div className="mb-4">
@@ -462,11 +463,14 @@ export default function InvoiceGenerator({ lang = defaultLang, initialData }: { 
                     onChange={(e) => set("fromEIN", e.target.value)} />
                 </div>
               </div>
+              <NextButton step={1} />
+              </div>
             </div>
 
             {/* Bill To */}
             <div className={cardCls}>
-              <h3 className="font-semibold text-slate-900 mb-4">{t("tool.billTo")}</h3>
+              <StepHeader step={2} title="Client" />
+              <div className={activeStep === 2 ? "md:block" : "hidden md:block"}>
               <div className="space-y-3">
                 <div>
                   <label className={labelCls}>Client Name / Company</label>
@@ -483,13 +487,14 @@ export default function InvoiceGenerator({ lang = defaultLang, initialData }: { 
                   <textarea className={`${inputCls} resize-none`} rows={2} placeholder="456 Client Ave, City"
                     value={data.toAddress} onChange={(e) => set("toAddress", e.target.value)} />
                 </div>
-                <NextButton step={2} />
+                </div>
               </div>
             </div>
 
             {/* Invoice Details */}
             <div className={cardCls}>
-              <h3 className="font-semibold text-slate-900 mb-4">{t("tool.invoiceDetails")}</h3>
+              <StepHeader step={3} title="Invoice Details" />
+              <div className={activeStep === 3 ? "md:block" : "hidden md:block"}>
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label className={labelCls}>{t("tool.invoiceNum")}</label>
@@ -514,13 +519,15 @@ export default function InvoiceGenerator({ lang = defaultLang, initialData }: { 
                   <input className={inputCls} type="date" value={data.dueDate}
                     onChange={(e) => set("dueDate", e.target.value)} />
                 </div>
-                <NextButton step={3} />
+              </div>
+              <NextButton step={3} />
               </div>
             </div>
 
             {/* Line Items */}
             <div className={cardCls}>
-              <h3 className="font-semibold text-slate-900 mb-4">{t("tool.lineItems")}</h3>
+              <StepHeader step={4} title="Line Items" />
+              <div className={activeStep === 4 ? "md:block" : "hidden md:block"}>
               <div className="space-y-3">
                 <div className="grid grid-cols-[1fr_72px_96px_36px] gap-2 text-xs font-semibold text-slate-500 uppercase tracking-wider px-1">
                   <span>{t("tool.desc")}</span>
@@ -560,13 +567,15 @@ export default function InvoiceGenerator({ lang = defaultLang, initialData }: { 
                 <input className={`${inputCls} w-28`} type="number" inputMode="decimal" min="0" max="100" step="0.5"
                   value={data.taxRate || ""} placeholder="0"
                   onChange={(e) => set("taxRate", parseFloat(e.target.value) || 0)} />
-                <NextButton step={5} />
+                <NextButton step={4} />
+              </div>
               </div>
             </div>
 
             {/* Notes & Terms */}
             <div className={cardCls}>
-              <h3 className="font-semibold text-slate-900 mb-4">{t("tool.notesTerms")}</h3>
+              <StepHeader step={5} title="Notes & Terms" />
+              <div className={activeStep === 5 ? "md:block" : "hidden md:block"}>
               <div className="space-y-3">
                 <div>
                   <label className={labelCls}>{t("tool.paymentTerms")}</label>
@@ -579,6 +588,8 @@ export default function InvoiceGenerator({ lang = defaultLang, initialData }: { 
                     placeholder="Thank you for your business!"
                     value={data.notes} onChange={(e) => set("notes", e.target.value)} />
                 </div>
+              </div>
+              <NextButton step={5} />
               </div>
             </div>
 
@@ -738,7 +749,7 @@ export default function InvoiceGenerator({ lang = defaultLang, initialData }: { 
       {/* Mobile Fixed Download Bar */}
       <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 p-4 z-50 shadow-[0_-10px_40px_rgba(0,0,0,0.1)] flex gap-3 pb-safe">
         <button
-          onClick={getPDFBlob}
+          onClick={handleDownloadPDF}
           disabled={loading !== null}
           className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-[10px] transition-colors flex items-center justify-center gap-2 disabled:opacity-70"
         >
@@ -746,7 +757,7 @@ export default function InvoiceGenerator({ lang = defaultLang, initialData }: { 
           {t("tool.downloadPdf")}
         </button>
         <button
-          onClick={getPDFBlob}
+          onClick={handleWhatsAppShare}
           disabled={loading !== null}
           className="bg-[#25D366] hover:bg-[#20bd5a] text-white font-semibold py-3 px-4 rounded-[10px] transition-colors flex items-center justify-center disabled:opacity-70 shadow-sm"
           aria-label="Share via WhatsApp"
