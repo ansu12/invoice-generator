@@ -1,33 +1,38 @@
-﻿---
+---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 ---
-<BaseLayout title="About Us â€” InvoiceGen" description="Learn who built InvoiceGen, why we created this free tool, and how we protect your privacy.">
+
+<BaseLayout title="About Us | Free Invoice Generator" description="Learn about our free, privacy-first invoice generator for freelancers.">
   <Navbar />
-  <div class="pt-24 pb-12 bg-slate-50 text-center border-b border-slate-100">
-    <div class="max-w-4xl mx-auto px-6">
-      <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">About Us</h1>
-      <div class="text-slate-500 font-medium mt-4">
-        Last Updated: <time datetime="2026-09-15">September 15, 2026</time>
+  
+  <main class="max-w-3xl mx-auto px-6 py-24">
+    <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-8">About Us</h1>
+    
+    <div class="prose prose-slate prose-lg">
+      <p>
+        We built this invoice generator because we were tired of tools that promise to be free, only to hide your PDF download behind a signup wall or plaster a watermark on your professional document.
+      </p>
+      
+      <p>
+        This is a completely free, privacy-first invoice generator designed specifically for freelancers, contractors, and small businesses. 
+      </p>
+
+      <h3>Privacy First. Always.</h3>
+      <p>
+        Unlike traditional SaaS applications, our platform operates entirely client-side. When you input your business name, client details, and financial line items into our template, <strong>that data never touches our remote servers</strong>. 
+      </p>
+      
+      <p>
+        All processing and document rendering happens instantly and securely right inside your own web browser. No signup required. No accounts. No tracking. Just a fast, reliable tool to help you get paid.
+      </p>
+
+      <div class="mt-12">
+        <a href="/" class="text-blue-600 font-semibold hover:underline">&larr; Back to the Invoice Generator</a>
       </div>
     </div>
-  </div>
-  <article class="py-16 bg-white">
-    <div class="max-w-3xl mx-auto px-6 prose prose-slate prose-lg text-justify">
-      
-<p>Welcome to InvoiceGen, the fastest and most private way to generate professional billing documents online. We built this tool because we experienced firsthand the intense frustration of modern business administration. As freelancers and independent contractors, we spent countless hours fighting with clunky word processors, wrestling with formatting errors in spreadsheet templates, and navigating bloated enterprise accounting software that demanded hefty monthly subscriptions for features we never used.</p>
-<h2>Why We Built This Tool</h2>
-<p>The core problem with the invoicing software market today is unnecessary friction. Most platforms require you to create an account, verify an email address, and surrender your personal data before you are even allowed to view their template. Once you finally get inside, they hit you with arbitrary usage limits or stamp their own corporate logo as a watermark on your hard work, forcing you to upgrade to a premium tier just to look professional.</p>
-<p>We believe that generating a clean, mathematically accurate PDF invoice should be a fundamental utility, completely free of charge and devoid of artificial paywalls. Your time should be spent delivering value to your clients, not managing complex software.</p>
-<h2>What Makes Us Different</h2>
-<p>What truly sets us apart from competitors like InvoiceSimple or FreshBooks is our absolute commitment to your privacy and our strictly "no signup" philosophy. We engineered InvoiceGen to operate entirely client-side. When you type your business details, client names, and financial line items into our template, that data never touches our remote servers. All the processing and document rendering happens instantly and securely right inside your own web browser.</p>
-<p>Furthermore, we offer genuinely unlimited usage. Whether you are generating a single invoice for a freelance gig or processing fifty invoices a week for a busy contracting business, you will never be asked to upgrade, and your PDFs will never bear a watermark.</p>
-<h2>Contact Us</h2>
-<p>We are always striving to improve the platform. If you have feature requests, bug reports, or simply want to say hello, we would love to hear from you. You can reach our team directly via email at <a href="mailto:support@invoicegen.com">support@invoicegen.com</a>.</p>
+  </main>
 
-    </div>
-  </article>
   <Footer />
 </BaseLayout>
-

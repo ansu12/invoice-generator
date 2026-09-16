@@ -1,34 +1,41 @@
-﻿---
+---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 ---
-<BaseLayout title="Privacy Policy â€” InvoiceGen" description="Read our Privacy Policy. We do not store your data, use tracking cookies, or require accounts.">
+
+<BaseLayout title="Privacy Policy | Free Invoice Generator" description="Our privacy policy. We do not store your data.">
   <Navbar />
-  <div class="pt-24 pb-12 bg-slate-50 text-center border-b border-slate-100">
-    <div class="max-w-4xl mx-auto px-6">
-      <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">Privacy Policy</h1>
-      <div class="text-slate-500 font-medium mt-4">
-        Last Updated: <time datetime="2026-09-15">September 15, 2026</time>
+  
+  <main class="max-w-3xl mx-auto px-6 py-24">
+    <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4">Privacy Policy</h1>
+    <p class="text-slate-500 mb-8">Last Updated: September 16, 2026</p>
+    
+    <div class="prose prose-slate prose-lg">
+      <p>
+        This Privacy Policy outlines how we handle your information. The short version is simple: <strong>we do not collect, store, or analyze your invoice data on our servers.</strong>
+      </p>
+
+      <h3>100% Client-Side Processing</h3>
+      <p>
+        Our tool runs entirely within your web browser. When you generate an invoice, all financial data, client names, and business details remain strictly on your local device. No data is sent to our servers.
+      </p>
+
+      <h3>Cookies and Analytics</h3>
+      <p>
+        We do not use tracking cookies. We may use anonymous, privacy-friendly analytics to count page views, but we do not track your individual behavior or store personally identifiable information. We may use your browser's local storage to save your preferences (like your chosen currency) so you don't have to re-enter them every time.
+      </p>
+
+      <h3>Contact Us</h3>
+      <p>
+        If you have any questions about this Privacy Policy, you can contact us at: <a href="mailto:support@yourdomain.com">support@yourdomain.com</a>.
+      </p>
+
+      <div class="mt-12">
+        <a href="/" class="text-blue-600 font-semibold hover:underline">&larr; Back to the Invoice Generator</a>
       </div>
     </div>
-  </div>
-  <article class="py-16 bg-white">
-    <div class="max-w-3xl mx-auto px-6 prose prose-slate prose-lg text-justify">
-      
-<p>At InvoiceGen, we believe that privacy is a fundamental human right, especially when dealing with sensitive financial and business data. This Privacy Policy outlines our strict adherence to data minimization and explains exactly how our application interacts with your information. The short version is simple: <strong>we do not collect, store, or analyze your invoice data on our servers.</strong></p>
-<h2>What Data We Collect</h2>
-<p>When you use our primary invoice generator tool, we collect absolutely zero personal or financial information. Unlike traditional SaaS applications, our platform operates entirely via client-side processing. This means that when you input your business name, your client's address, your line items, and your tax percentages, that information remains strictly on the device you are using. We do not have a database containing your invoices, nor do we have access to the names of your clients or your revenue numbers. Your business is entirely your own.</p>
-<h2>How LocalStorage Works</h2>
-<p>To provide a seamless user experience, we may utilize a standard web technology called <code>localStorage</code>. This feature allows your web browser to temporarily remember certain preferences (such as your chosen currency or custom tax rate) so that you do not have to re-enter them every time you load the page. It is crucial to understand that <code>localStorage</code> data is saved locally on your hard drive, not on our servers. You can easily delete this data at any time by clearing your browser's history and site data.</p>
-<h2>No Tracking, No Cookies, No Third-Party Analytics</h2>
-<p>We actively refuse to participate in the surveillance economy. We do not use intrusive tracking cookies, we do not employ third-party analytics scripts (like Google Analytics) that monitor your keystrokes or mouse movements, and we do not retarget you with advertisements across the internet. You will not find any Facebook Pixel or invasive tracking codes embedded in our website.</p>
-<p>Our commitment to privacy ensures that your billing workflow remains completely secure and anonymous. We don't know who you are, and we don't want to know. We just want to provide you with the best possible tool for generating your PDF invoices.</p>
-<h2>Changes to This Policy</h2>
-<p>Because we collect no data, we do not anticipate needing to make significant changes to this Privacy Policy. However, if any technical updates require a revision, we will post the updated policy on this page with a revised "Last Updated" date at the top.</p>
+  </main>
 
-    </div>
-  </article>
   <Footer />
 </BaseLayout>
-
