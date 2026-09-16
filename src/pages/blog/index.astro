@@ -1,0 +1,60 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+
+const title = "Blog | Free Invoice Generator";
+const description = "Tips, guides, and resources for freelancers and small businesses on invoicing, billing, and getting paid.";
+const canonical = "https://invoice-generator.purohitansu7.workers.dev/blog";
+
+const posts = [
+  {
+    title: "How to Create a Professional Invoice as a Freelancer (2026 Guide)",
+    date: "September 16, 2026",
+    excerpt: "Learn exactly what to include in your freelance invoice to get paid faster and avoid common billing mistakes.",
+    url: "/blog/how-to-create-invoice-freelancer"
+  },
+  {
+    title: "Invoice vs Receipt: What's the Difference?",
+    date: "September 16, 2026",
+    excerpt: "Understand the critical differences between an invoice and a receipt, and when to send each document to your clients.",
+    url: "/blog/invoice-vs-receipt"
+  }
+];
+---
+
+<BaseLayout title={title} description={description} canonical={canonical}>
+  <Navbar />
+  
+  <div class="pt-24 pb-12 bg-slate-50 text-center border-b border-slate-100">
+    <div class="max-w-4xl mx-auto px-6">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
+        Invoicing Guides & Resources
+      </h1>
+      <p class="text-lg text-slate-600 mt-4">
+        Everything you need to know about getting paid as a freelancer or small business.
+      </p>
+    </div>
+  </div>
+
+  <div class="py-16 bg-white min-h-[50vh]">
+    <div class="max-w-3xl mx-auto px-6 space-y-8">
+      {posts.map(post => (
+        <a href={post.url} class="block group p-8 rounded-2xl border border-slate-200 hover:border-blue-300 hover:shadow-lg transition-all">
+          <div class="text-sm font-semibold text-blue-600 mb-2">{post.date}</div>
+          <h2 class="text-2xl font-bold text-slate-900 group-hover:text-blue-700 transition-colors mb-3">
+            {post.title}
+          </h2>
+          <p class="text-slate-600 leading-relaxed">
+            {post.excerpt}
+          </p>
+          <div class="mt-4 text-blue-600 font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+            Read article <span>&rarr;</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+
+  <Footer />
+</BaseLayout>
