@@ -1,4 +1,41 @@
----
+import fs from 'fs';
+import path from 'path';
+
+const toolPages = [
+  'index.astro',
+  'free-invoice-generator.astro',
+  'invoice-generator-free.astro',
+  'online-invoice-generator.astro',
+  'free-online-invoice-generator.astro',
+  'ai-invoice-generator.astro',
+  'paypal-invoice-generator.astro',
+  'invoice-generator-online.astro',
+  'invoice-template.astro'
+];
+
+toolPages.forEach(file => {
+  const filepath = path.join('src/pages', file);
+  if (!fs.existsSync(filepath)) return;
+  
+  let h1 = "";
+  let sub = "";
+  let cta = "";
+  
+  if (file === 'index.astro') {
+    h1 = "Create a professional invoice in 30 seconds.";
+    sub = "No signup. Free forever. Works on your phone.";
+    cta = "Create My Invoice";
+  } else {
+    // Generate action from filename
+    let name = file.replace('.astro', '').replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+    h1 = `Generate ${name}s in 30 seconds. No signup. Free forever.`;
+    sub = "Works on your phone. No account needed.";
+    cta = `Generate ${name}s Now`;
+  }
+  
+  const trustLine = "No account. No watermark. Your data stays in your browser.";
+  
+  const content = `---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
@@ -10,18 +47,18 @@ import InvoiceGenerator from "../components/InvoiceGenerator";
   
   <!-- HERO SECTION AT TOP -->
   <header class="pt-16 pb-12 px-6 text-center max-w-4xl mx-auto">
-    <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 tracking-tight mb-4 leading-tight">Generate Invoice Generator Onlines in 30 seconds. No signup. Free forever.</h1>
-    <p class="text-xl text-slate-600 mb-8 font-medium">Works on your phone. No account needed.</p>
+    <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 tracking-tight mb-4 leading-tight">${h1}</h1>
+    <p class="text-xl text-slate-600 mb-8 font-medium">${sub}</p>
     
     <div class="mb-4">
       <a href="#invoice-generator" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold text-lg px-8 py-4 rounded-xl shadow-lg transition-transform hover:scale-[1.02] active:scale-[0.98] w-full sm:w-auto min-h-[44px]">
-        Generate Invoice Generator Onlines Now
+        ${cta}
       </a>
     </div>
     
     <p class="text-sm text-slate-500 font-medium flex items-center justify-center gap-1.5 flex-wrap">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      No account. No watermark. Your data stays in your browser.
+      ${trustLine}
     </p>
   </header>
 
@@ -52,3 +89,8 @@ import InvoiceGenerator from "../components/InvoiceGenerator";
 
   <Footer />
 </BaseLayout>
+`;
+  
+  fs.writeFileSync(filepath, content);
+  console.log(`Rewrote ${file}`);
+});

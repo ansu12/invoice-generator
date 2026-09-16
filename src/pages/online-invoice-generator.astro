@@ -3,50 +3,52 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import InvoiceGenerator from "../components/InvoiceGenerator";
-
-const title = "Online Invoice Generator � Create Invoices in Your Browser";
-const description = "A powerful online invoice generator that works entirely in your browser. Create, preview, and download PDF invoices instantly. No software needed.";
-const canonical = "https://invoice-generator.purohitansu7.workers.dev/online-invoice-generator";
 ---
 
-<BaseLayout title={title} description={description} canonical={canonical}>
+<BaseLayout title="Free Invoice Generator" description="Create professional invoices in seconds. No signup required.">
   <Navbar />
   
-  <div class="bg-gradient-to-b from-blue-50 to-white pt-24 pb-12 text-center px-6">
-    <div class="max-w-3xl mx-auto">
-      <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 tracking-tight mb-5 leading-tight">
-        Online Invoice Generator
-      </h1>
-      <p class="text-lg md:text-xl text-slate-600 mb-8 leading-relaxed">
-        Create invoices directly in your browser. Fast, secure, and easy.
-      </p>
-      <div class="flex flex-wrap justify-center gap-3 mb-8">
-        <span class="bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-full shadow-sm">? No Signup</span>
-        <span class="bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-full shadow-sm">? No Watermarks</span>
-        <span class="bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-full shadow-sm">? 100% Free</span>
+  <!-- HERO SECTION AT TOP -->
+  <header class="pt-16 pb-12 px-6 text-center max-w-4xl mx-auto">
+    <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 tracking-tight mb-4 leading-tight">Generate Online Invoice Generators in 30 seconds. No signup. Free forever.</h1>
+    <p class="text-xl text-slate-600 mb-8 font-medium">Works on your phone. No account needed.</p>
+    
+    <div class="mb-4">
+      <a href="#invoice-generator" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold text-lg px-8 py-4 rounded-xl shadow-lg transition-transform hover:scale-[1.02] active:scale-[0.98] w-full sm:w-auto min-h-[44px]">
+        Generate Online Invoice Generators Now
+      </a>
+    </div>
+    
+    <p class="text-sm text-slate-500 font-medium flex items-center justify-center gap-1.5 flex-wrap">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      No account. No watermark. Your data stays in your browser.
+    </p>
+  </header>
+
+  <!-- HOW IT WORKS SECTION -->
+  <section class="max-w-4xl mx-auto px-6 mb-16">
+    <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 sm:p-8">
+      <h2 class="text-lg font-bold text-slate-900 mb-6 uppercase tracking-wider text-center">How it works</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="flex flex-col items-center text-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 font-bold flex items-center justify-center text-lg">1</div>
+          <h3 class="font-bold text-slate-900">Enter your business and client details.</h3>
+        </div>
+        <div class="flex flex-col items-center text-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 font-bold flex items-center justify-center text-lg">2</div>
+          <h3 class="font-bold text-slate-900">Add line items and tax.</h3>
+        </div>
+        <div class="flex flex-col items-center text-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 font-bold flex items-center justify-center text-lg">3</div>
+          <h3 class="font-bold text-slate-900">Download your PDF invoice.</h3>
+        </div>
       </div>
     </div>
+  </section>
+
+  <div id="invoice-generator" class="w-full">
+    <InvoiceGenerator client:load />
   </div>
-
-  <InvoiceGenerator client:load />
-
-  <article class="py-20 bg-white border-t border-slate-100">
-    <div class="max-w-3xl mx-auto px-6 prose prose-slate prose-lg">
-      <h2>The Best Online Invoice Generator</h2>
-      <p>If you are looking for a reliable <strong>online invoice generator</strong>, you have found the right tool. Our platform allows freelancers, contractors, and small businesses to create professional PDF invoices in seconds. Unlike other tools, we do not require you to sign up, and we never place watermarks on your documents.</p>
-      
-      <h2>Why Choose Our Tool?</h2>
-      <ul>
-        <li><strong>Instant PDF Download:</strong> Create your invoice and download it immediately.</li>
-        <li><strong>Completely Free:</strong> No hidden fees, no subscriptions, no paywalls.</li>
-        <li><strong>Professional Design:</strong> Impress your clients with clean, modern templates.</li>
-        <li><strong>Secure and Private:</strong> Your data never leaves your browser.</li>
-      </ul>
-      
-      <h2>How to Use This Online Invoice Generator</h2>
-      <p>Using our tool is incredibly simple. Just fill in your business details, add your client's information, and list the services or products you provided. The live preview updates instantly. Once you are satisfied, click download to get your high-quality PDF invoice.</p>
-    </div>
-  </article>
 
   <Footer />
 </BaseLayout>
