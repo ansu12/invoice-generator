@@ -1,0 +1,49 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+
+const title = "Freelancer Invoice Template | Free Download & Online Generator";
+const description = "Download a free freelancer invoice template or generate one online instantly. Perfect for independent contractors, writers, and designers.";
+const canonical = "https://invoice-generator.purohitansu7.workers.dev/freelancer-invoice-template";
+---
+
+<BaseLayout title={title} description={description} canonical={canonical}>
+  <Navbar />
+  
+  <div class="pt-24 pb-12 bg-slate-50 text-center border-b border-slate-100">
+    <div class="max-w-4xl mx-auto px-6">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
+        Freelancer Invoice Template
+      </h1>
+      <p class="text-lg text-slate-600 mt-4 max-w-2xl mx-auto">
+        A clean, professional invoice template designed specifically for freelancers and independent contractors.
+      </p>
+      
+      <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4">
+        <a href="/" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-xl transition-colors shadow-sm text-lg">
+          Generate Online Now
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <article class="py-16 bg-white min-h-[40vh]">
+    <div class="max-w-3xl mx-auto px-6 prose prose-slate prose-lg">
+      <h2>Why use a freelancer invoice template?</h2>
+      <p>As a freelancer, your time is money. You shouldn't be spending hours wrestling with Word documents or spreadsheets just to get paid. A standardized template ensures you include all necessary legal and payment details every single time.</p>
+      
+      <h2>What's included in this template?</h2>
+      <ul>
+        <li>Professional header for your personal brand or business name</li>
+        <li>Clear line items for hourly rates or flat-fee project milestones</li>
+        <li>Due date and payment terms section</li>
+        <li>Notes section for wire transfer details or PayPal links</li>
+      </ul>
+      
+      <p>Click the button above to use our free online generator, which is pre-configured with everything a freelancer needs to send a professional PDF invoice in seconds.</p>
+    </div>
+  </article>
+
+  <Footer />
+</BaseLayout>

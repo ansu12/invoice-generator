@@ -1,0 +1,48 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+
+const title = "Consulting Invoice Template | Free Download & Generator";
+const description = "Professional consulting invoice template for consultants and advisors. Generate your invoice online instantly as a PDF.";
+const canonical = "https://invoice-generator.purohitansu7.workers.dev/consulting-invoice-template";
+---
+
+<BaseLayout title={title} description={description} canonical={canonical}>
+  <Navbar />
+  
+  <div class="pt-24 pb-12 bg-slate-50 text-center border-b border-slate-100">
+    <div class="max-w-4xl mx-auto px-6">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
+        Consulting Invoice Template
+      </h1>
+      <p class="text-lg text-slate-600 mt-4 max-w-2xl mx-auto">
+        Bill your clients with confidence using our professional consulting invoice template.
+      </p>
+      
+      <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4">
+        <a href="/" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-xl transition-colors shadow-sm text-lg">
+          Generate Online Now
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <article class="py-16 bg-white min-h-[40vh]">
+    <div class="max-w-3xl mx-auto px-6 prose prose-slate prose-lg">
+      <h2>Professional Billing for Consultants</h2>
+      <p>When you're charging premium consulting rates, your invoice needs to look the part. An amateur invoice can undermine your authority and delay your payment from corporate accounting departments.</p>
+      
+      <h2>Key elements of a consulting invoice</h2>
+      <ul>
+        <li><strong>Detailed descriptions:</strong> Break down your retainer, hourly advisory, or project milestones clearly.</li>
+        <li><strong>Tax IDs:</strong> Essential for B2B billing (EIN, VAT, or GST numbers).</li>
+        <li><strong>Clear terms:</strong> "Net 15" or "Net 30" depending on your master services agreement.</li>
+      </ul>
+      
+      <p>Use our free generator to instantly create a corporate-ready consulting invoice. It requires no signup and runs entirely in your browser.</p>
+    </div>
+  </article>
+
+  <Footer />
+</BaseLayout>
