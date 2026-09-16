@@ -6,5 +6,11 @@
   "assets": {
     "directory": "./dist/client",
     "binding": "ASSETS"
-  }
+  },
+  "kv_namespaces": [
+    {
+      "binding": "SUBSCRIBERS",
+      "id": "YOUR_KV_NAMESPACE_ID_HERE"
+    }
+  ]
 }

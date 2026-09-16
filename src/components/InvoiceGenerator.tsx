@@ -1,3 +1,4 @@
+import SubscribeHook from "./SubscribeHook";
 import { useState, useRef, useCallback, useEffect } from "react";
 import type { InvoiceData, LineItem } from "../lib/types";
 import { CURRENCIES } from "../lib/types";
@@ -739,7 +740,8 @@ export default function InvoiceGenerator({ lang = defaultLang, initialData }: { 
                 )}
               </div>{/* end #invoice-preview */}
             </div>
-            <p className="text-center text-xs text-slate-400 mt-3">Live preview — updates as you type</p>
+            <p className="text-center text-xs text-slate-400 mt-3">Live preview - updates as you type</p>
+              <SubscribeHook />
           </div>
 
         </div>
